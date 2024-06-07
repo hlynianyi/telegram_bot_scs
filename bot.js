@@ -3,9 +3,8 @@ const TelegramBot = require("node-telegram-bot-api");
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
-const { QUADRO, BIKES, INFO } = require("./data.js");
+const { QUADRO, BIKES, INFO, SCOUTERS } = require("./data.js");
 const token = process.env.TELEGRAM_BOT_TOKEN;
-const SERVER_URL = process.env.SERVER_URL;
 const TELEGRAPH_TOKEN = process.env.TELEGRAPH_TOKEN;
 const Telegraph = require("telegraph-node");
 const ph = new Telegraph();
@@ -13,13 +12,12 @@ const ph = new Telegraph();
 if (!token) {
   throw new Error("TELEGRAM_BOT_TOKEN не задан в переменных окружения.");
 }
-if (!SERVER_URL) {
-  throw new Error("SERVER_URL не задан в переменных окружения.");
-}
+
 if (!TELEGRAPH_TOKEN) {
   throw new Error("TELEGRAPH_TOKEN не задан в переменных окружения.");
 }
-// Создайте экземпляр бота
+
+// Экземпляр бота
 const bot = new TelegramBot(token, { polling: true });
 bot.on("polling_error", (err) => console.log(err));
 
@@ -46,14 +44,14 @@ const commands = [
 bot.setMyCommands(commands);
 
 const userStates = {};
+const welcomeMessage =
+  "Здравствуйте,\nВы можете использовать следующие команды:\n/start - Запуск бота\n/catalog - Здесь вы можете самостоятельно изучить весь каталог (мотоциклы, скутеры и т.д.)\n/info - Интересующие вас вопросы";
+const categoryEmptyMessage = `Товары данной категории скоро будут доступны. Пожалуйста, попробуйте позже.`;
 
 // Обработчик команды /start
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
-  bot.sendMessage(
-    chatId,
-    "Здравствуйте,\nВы можете использовать следующие команды:\n/start - Запуск бота.\n/catalog - Здесь вы можете самостоятельно изучить весь каталог мотоциклов/квадроциклов.\n/info - Интересующие вас вопросы."
-  );
+  bot.sendMessage(chatId, welcomeMessage);
 });
 
 // Обработчик команды /catalog
@@ -64,8 +62,9 @@ bot.onText(/\/catalog/, (msg) => {
     reply_markup: {
       keyboard: [
         [{ text: "Мотоциклы" }],
+        [{ text: "Скутеры" }],
         [{ text: "Квадроциклы" }],
-        [{ text: "Вернуться" }],
+        // [{ text: "Вернуться" }],
       ],
       resize_keyboard: true,
       one_time_keyboard: true,
@@ -74,31 +73,36 @@ bot.onText(/\/catalog/, (msg) => {
   bot.sendMessage(chatId, "Выберите что вас интересует:", options);
 });
 
-// Обработчик команды Мотоциклы
+// Обработчик команды "Мотоциклы"
 bot.onText(/\Мотоциклы/, (msg) => {
   const chatId = msg.chat.id;
   userStates[chatId] = "bikes";
   if (BIKES.length !== 0) {
     sendProductList(chatId, BIKES);
   } else {
-    bot.sendMessage(
-      chatId,
-      `Товары данной категории скоро будут доступны. Пожалуйста, попробуйте позже.`
-    );
+    bot.sendMessage(chatId, categoryEmptyMessage);
   }
 });
 
-// Обработчик команды Квадроциклы
+// Обработчик команды "Скутеры"
+bot.onText(/\Скутеры/, (msg) => {
+  const chatId = msg.chat.id;
+  userStates[chatId] = "scouters";
+  if (SCOUTERS.length !== 0) {
+    sendProductList(chatId, SCOUTERS);
+  } else {
+    bot.sendMessage(chatId, categoryEmptyMessage);
+  }
+});
+
+// Обработчик команды "Квадроциклы"
 bot.onText(/\Квадроциклы/, (msg) => {
   const chatId = msg.chat.id;
   userStates[chatId] = "quadrocycles";
   if (QUADRO.length !== 0) {
     sendProductList(chatId, QUADRO);
   } else {
-    bot.sendMessage(
-      chatId,
-      `Товары данной категории скоро будут доступны. Пожалуйста, попробуйте позже.`
-    );
+    bot.sendMessage(chatId, categoryEmptyMessage);
   }
 });
 
@@ -115,11 +119,20 @@ bot.onText(/\Вернуться/, (msg) => {
         one_time_keyboard: true,
       },
     });
-  } else if (currentState === "bikes" || currentState === "quadrocycles") {
+  } else if (
+    currentState === "bikes" ||
+    currentState === "quadrocycles" ||
+    currentState === "scouters"
+  ) {
     userStates[chatId] = "catalog";
+
     bot.sendMessage(chatId, "Возвращаемся к каталогу.", {
       reply_markup: {
-        keyboard: [[{ text: "Мотоциклы" }], [{ text: "Квадроциклы" }]],
+        keyboard: [
+          [{ text: "Мотоциклы" }],
+          [{ text: "Квадроциклы" }],
+          [{ text: "Скутеры" }],
+        ],
         resize_keyboard: true,
         one_time_keyboard: true,
       },
@@ -214,7 +227,6 @@ async function sendProductList(chatId, category) {
 
 bot.onText(/\/info/, (msg) => {
   const chatId = msg.chat.id;
-
   bot.sendMessage(chatId, INFO);
 });
 

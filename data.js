@@ -1,5 +1,102 @@
 // export const CATEGORIES = ["мотоциклы", "квадроциклы"];
+
+// ID: начинаются с 0 (айдишники будут отвечать за нумерацию товаров + тебе легче будет отслеживать старые-новые + ориентироваться)
 const QUADRO = [];
+
+const SCOUTERS = [
+  {
+    id: 0,
+    name: "Julong",
+    category: "Электро-скутер",
+    images: [
+      "https://thumbs2.imgbox.com/de/98/s3loyPQy_t.jpg",
+      "https://thumbs2.imgbox.com/ae/63/rnyc4Z1x_t.jpg",
+      "https://thumbs2.imgbox.com/79/14/HBHBaA7L_t.jpg",
+      "https://thumbs2.imgbox.com/e5/4b/n7LiDTFm_t.jpg",
+      "https://thumbs2.imgbox.com/e0/6f/t630LDVx_t.jpg",
+    ],
+    variants: [
+      {
+        price: "52500",
+        speed: "55-60",
+        engine: "1500",
+        controller: "1500",
+      },
+      {
+        price: "60500",
+        speed: "70-75",
+        engine: "2000",
+        controller: "3000",
+      },
+      {
+        price: "85000",
+        speed: "110-120",
+        engine: "5000",
+        controller: "8000",
+      },
+    ],
+  },
+  {
+    id: 1,
+    name: "Zuma",
+    category: "Электро-скутер",
+    images: [
+      "https://thumbs2.imgbox.com/34/fe/4k6xhTwl_t.jpg",
+      "https://thumbs2.imgbox.com/0c/a1/O8Y7KATx_t.jpg",
+      "https://thumbs2.imgbox.com/cc/34/0uszrnsV_t.jpg",
+      "https://thumbs2.imgbox.com/33/d6/q1zt2dKQ_t.jpg",
+      "https://thumbs2.imgbox.com/22/da/jPL2YHPR_t.jpg",
+      "https://thumbs2.imgbox.com/a2/34/UbwGU8M5_t.jpg",
+      "https://thumbs2.imgbox.com/c2/ad/SmokXJ9N_t.jpg",
+    ],
+    variants: [
+      {
+        price: "52500",
+        speed: "55-60",
+        engine: "1500",
+        controller: "1500",
+      },
+      {
+        price: "60500",
+        speed: "70-75",
+        engine: "2000",
+        controller: "3000",
+      },
+      {
+        price: "85000",
+        speed: "110-120",
+        engine: "5000",
+        controller: "8000",
+      },
+    ],
+  },
+  {
+    id: 2,
+    name: "Новое столетие（新世纪）N1",
+    category: "Электро-скутер",
+    images: [
+      "https://thumbs2.imgbox.com/8c/cb/NuRqF09p_t.jpg",
+      "https://thumbs2.imgbox.com/cd/8d/SGaQBCMg_t.jpg",
+      "https://thumbs2.imgbox.com/72/38/QDDhxEoc_t.jpg",
+      "https://thumbs2.imgbox.com/94/16/dnnF1R4A_t.jpg",
+      "https://thumbs2.imgbox.com/d3/2b/HJp2q8Y7_t.jpg",
+    ],
+    variants: [
+      {
+        price: "43000",
+        speed: "48-50",
+        engine: "1000",
+        controller: "1000",
+      },
+      {
+        price: "56000",
+        speed: "70-75",
+        engine: "2000",
+        controller: "3000",
+      },
+    ],
+  },
+];
 
 const BIKES = [
   {
@@ -68,70 +165,6 @@ const BIKES = [
   },
   {
     id: 2,
-    name: "Julong",
-    category: "Электро-скутер",
-    images: [
-      "https://thumbs2.imgbox.com/de/98/s3loyPQy_t.jpg",
-      "https://thumbs2.imgbox.com/ae/63/rnyc4Z1x_t.jpg",
-      "https://thumbs2.imgbox.com/79/14/HBHBaA7L_t.jpg",
-      "https://thumbs2.imgbox.com/e5/4b/n7LiDTFm_t.jpg",
-      "https://thumbs2.imgbox.com/e0/6f/t630LDVx_t.jpg",
-    ],
-    variants: [
-      {
-        price: "50000",
-        speed: "55",
-        engine: "1500",
-        controller: "1500",
-      },
-      {
-        price: "57500",
-        speed: "70",
-        engine: "2000",
-        controller: "3000",
-      },
-      {
-        price: "82000",
-        speed: "110-110",
-        engine: "5000",
-        controller: "8000",
-      },
-    ],
-  },
-  // {
-  //   id: 3,
-  //   name: "m3m5",
-  //   category: "Электро-мотоцикл",
-  //   images: [
-  //     "",
-  //     "",
-  //     "",
-  //     "",
-  //     "",
-  //   ],
-  //   variants: [
-  //     {
-  //       price: "50000",
-  //       speed: "55-60",
-  //       engine: "1500",
-  //       controller: "1500",
-  //     },
-  //     {
-  //       price: "57500",
-  //       speed: "70-75",
-  //       engine: "2000",
-  //       controller: "3000",
-  //     },
-  //     {
-  //       price: "78000",
-  //       speed: "100-110",
-  //       engine: "3000",
-  //       controller: "5000",
-  //     },
-  //   ],
-  // },
-  {
-    id: 4,
     name: "Ducati Panigale",
     category: "Электро-мотоцикл",
     images: [
@@ -143,16 +176,50 @@ const BIKES = [
     ],
     variants: [
       {
-        price: "127400",
-        speed: "100",
+        price: "134000",
+        speed: "100-110",
         engine: "3000",
         controller: "5000",
       },
       {
-        price: "148000",
+        price: "154000",
         speed: "120",
         engine: "4000",
         controller: "8000",
+      },
+    ],
+  },
+  {
+    id: 3,
+    name: "Kawasaki Ninja 🥷 🥷",
+    category: "Электро-мотоцикл",
+    images: [
+      "https://thumbs2.imgbox.com/1d/81/dndUaNBy_t.jpg",
+      "https://thumbs2.imgbox.com/e3/dc/ptgIOL9V_t.jpg",
+      "https://thumbs2.imgbox.com/bf/da/b87ZTs25_t.jpg",
+      "https://thumbs2.imgbox.com/cb/cb/bXzxdbKp_t.jpg",
+      "https://thumbs2.imgbox.com/c4/cc/OCQzHzMs_t.jpg",
+      "https://thumbs2.imgbox.com/ed/ac/xopOnW9T_t.jpg",
+      "https://thumbs2.imgbox.com/43/c5/RpImGLzv_t.jpg",
+    ],
+    variants: [
+      {
+        price: "105000",
+        speed: "100-110",
+        engine: "3000",
+        controller: "5000",
+      },
+      {
+        price: "125000",
+        speed: "120-130",
+        engine: "4000",
+        controller: "8000",
+      },
+      {
+        price: "177000",
+        speed: "135",
+        engine: "8000",
+        controller: "10000",
       },
     ],
   },
@@ -183,4 +250,31 @@ const INFO = `
 2.3. - Так же имеется гарантия на мотор и аккумулятор, если фабричный брак, чего еще ни разу не было, тк все мотоциклы тщательно тестируются и проходят тестовые обкатки, то вы можете отправить бракованный мотор обратно в Китай, чтобы получить новый бесплатно🤝
   `;
 
-module.exports = { QUADRO, BIKES, INFO };
+module.exports = { QUADRO, BIKES, SCOUTERS, INFO };
+
+const example = {
+  id: 0,
+  name: "",
+  category: "",
+  images: ["", "", "", "", "", "", ""],
+  variants: [
+    {
+      price: "",
+      speed: "",
+      engine: "",
+      controller: "",
+    },
+    {
+      price: "",
+      speed: "",
+      engine: "",
+      controller: "",
+    },
+    {
+      price: "",
+      speed: "",
+      engine: "",
+      controller: "",
+    },
+  ],
+};
