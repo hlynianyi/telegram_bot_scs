@@ -8,11 +8,16 @@ const SCOUTERS = [
     name: "Julong",
     category: "Электро-скутер",
     images: [
-      "https://thumbs2.imgbox.com/de/98/s3loyPQy_t.jpg",
-      "https://thumbs2.imgbox.com/ae/63/rnyc4Z1x_t.jpg",
       "https://thumbs2.imgbox.com/79/14/HBHBaA7L_t.jpg",
+      "https://thumbs2.imgbox.com/ae/63/rnyc4Z1x_t.jpg",
+      "https://thumbs2.imgbox.com/de/98/s3loyPQy_t.jpg",
       "https://thumbs2.imgbox.com/e5/4b/n7LiDTFm_t.jpg",
       "https://thumbs2.imgbox.com/e0/6f/t630LDVx_t.jpg",
+      "https://thumbs2.imgbox.com/0e/92/tED9Hm2g_t.jpg",
+      "https://thumbs2.imgbox.com/39/ec/ndebW7ay_t.jpg",
+      "https://thumbs2.imgbox.com/c3/42/TPHwH3Ip_t.jpg",
+      "https://thumbs2.imgbox.com/21/0a/UyJujNZW_t.jpg",
+      "https://thumbs2.imgbox.com/c7/ad/LIUb7ArN_t.jpg",
     ],
     variants: [
       {
@@ -40,13 +45,17 @@ const SCOUTERS = [
     name: "Zuma",
     category: "Электро-скутер",
     images: [
-      "https://thumbs2.imgbox.com/34/fe/4k6xhTwl_t.jpg",
       "https://thumbs2.imgbox.com/0c/a1/O8Y7KATx_t.jpg",
+      "https://thumbs2.imgbox.com/34/fe/4k6xhTwl_t.jpg",
       "https://thumbs2.imgbox.com/cc/34/0uszrnsV_t.jpg",
       "https://thumbs2.imgbox.com/33/d6/q1zt2dKQ_t.jpg",
       "https://thumbs2.imgbox.com/22/da/jPL2YHPR_t.jpg",
       "https://thumbs2.imgbox.com/a2/34/UbwGU8M5_t.jpg",
       "https://thumbs2.imgbox.com/c2/ad/SmokXJ9N_t.jpg",
+      "https://thumbs2.imgbox.com/97/76/F7ODTQtb_t.jpg",
+      "https://thumbs2.imgbox.com/21/c4/1MmJykJv_t.jpg",
+      "https://thumbs2.imgbox.com/79/94/97kCEokd_t.jpg",
+      "https://thumbs2.imgbox.com/5e/79/HNrBGQyW_t.jpg",
     ],
     variants: [
       {
@@ -74,10 +83,10 @@ const SCOUTERS = [
     name: "Новое столетие（新世纪）N1",
     category: "Электро-скутер",
     images: [
+      "https://thumbs2.imgbox.com/94/16/dnnF1R4A_t.jpg",
       "https://thumbs2.imgbox.com/8c/cb/NuRqF09p_t.jpg",
       "https://thumbs2.imgbox.com/cd/8d/SGaQBCMg_t.jpg",
       "https://thumbs2.imgbox.com/72/38/QDDhxEoc_t.jpg",
-      "https://thumbs2.imgbox.com/94/16/dnnF1R4A_t.jpg",
       "https://thumbs2.imgbox.com/d3/2b/HJp2q8Y7_t.jpg",
     ],
     variants: [
@@ -168,11 +177,16 @@ const BIKES = [
     name: "Ducati Panigale",
     category: "Электро-мотоцикл",
     images: [
+      "https://thumbs2.imgbox.com/a5/24/Bl0tW6gI_t.jpg",
       "https://thumbs2.imgbox.com/e9/b1/j0jwP0FO_t.jpg",
       "https://thumbs2.imgbox.com/db/ee/yrhD6aoa_t.jpg",
       "https://thumbs2.imgbox.com/39/23/1WokpQXO_t.jpg",
-      "https://thumbs2.imgbox.com/a5/24/Bl0tW6gI_t.jpg",
       "https://thumbs2.imgbox.com/73/db/BnAE6XBq_t.jpg",
+      "https://thumbs2.imgbox.com/81/7e/C946qO47_t.jpg",
+      "https://thumbs2.imgbox.com/53/f4/bZd9x14e_t.jpg",
+      "https://thumbs2.imgbox.com/9e/2e/3rrKDJ5R_t.jpg",
+      "https://thumbs2.imgbox.com/b9/6a/BLolzCeX_t.jpg",
+      "https://thumbs2.imgbox.com/c1/94/OWEWSq80_t.jpg",
     ],
     variants: [
       {
@@ -201,6 +215,7 @@ const BIKES = [
       "https://thumbs2.imgbox.com/c4/cc/OCQzHzMs_t.jpg",
       "https://thumbs2.imgbox.com/ed/ac/xopOnW9T_t.jpg",
       "https://thumbs2.imgbox.com/43/c5/RpImGLzv_t.jpg",
+      "https://thumbs2.imgbox.com/13/89/iczvGUJP_t.jpg",
     ],
     variants: [
       {

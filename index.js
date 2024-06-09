@@ -61,20 +61,27 @@ bot.onText(/\/catalog/, (msg) => {
   const options = {
     reply_markup: {
       keyboard: [
-        [{ text: "Мотоциклы" }],
-        [{ text: "Скутеры" }],
-        [{ text: "Квадроциклы" }],
+        [{ text: "мотоциклы" }],
+        [{ text: "скутеры" }],
+        [{ text: "квадроциклы" }],
         // [{ text: "Вернуться" }],
       ],
       resize_keyboard: true,
       one_time_keyboard: true,
     },
   };
-  bot.sendMessage(chatId, "Выберите что вас интересует:", options);
+  bot.sendMessage(
+    chatId,
+    `Выберите что вас интересует в выпадающем меню или впишите:
+  -  мотоциклы
+  -  скутеры
+  -  квадроциклы`,
+    options
+  );
 });
 
 // Обработчик команды "Мотоциклы"
-bot.onText(/\Мотоциклы/, (msg) => {
+bot.onText(/\мотоциклы/, (msg) => {
   const chatId = msg.chat.id;
   userStates[chatId] = "bikes";
   if (BIKES.length !== 0) {
@@ -85,7 +92,7 @@ bot.onText(/\Мотоциклы/, (msg) => {
 });
 
 // Обработчик команды "Скутеры"
-bot.onText(/\Скутеры/, (msg) => {
+bot.onText(/\скутеры/, (msg) => {
   const chatId = msg.chat.id;
   userStates[chatId] = "scouters";
   if (SCOUTERS.length !== 0) {
@@ -96,7 +103,7 @@ bot.onText(/\Скутеры/, (msg) => {
 });
 
 // Обработчик команды "Квадроциклы"
-bot.onText(/\Квадроциклы/, (msg) => {
+bot.onText(/\свадроциклы/, (msg) => {
   const chatId = msg.chat.id;
   userStates[chatId] = "quadrocycles";
   if (QUADRO.length !== 0) {
@@ -106,7 +113,7 @@ bot.onText(/\Квадроциклы/, (msg) => {
   }
 });
 
-bot.onText(/\Вернуться/, (msg) => {
+bot.onText(/\вернуться/, (msg) => {
   const chatId = msg.chat.id;
   const currentState = userStates[chatId];
 
@@ -129,9 +136,9 @@ bot.onText(/\Вернуться/, (msg) => {
     bot.sendMessage(chatId, "Возвращаемся к каталогу.", {
       reply_markup: {
         keyboard: [
-          [{ text: "Мотоциклы" }],
-          [{ text: "Квадроциклы" }],
-          [{ text: "Скутеры" }],
+          [{ text: "мотоциклы" }],
+          [{ text: "квадроциклы" }],
+          [{ text: "скутеры" }],
         ],
         resize_keyboard: true,
         one_time_keyboard: true,
