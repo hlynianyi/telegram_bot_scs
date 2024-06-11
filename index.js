@@ -7,8 +7,8 @@ const Telegraph = require("telegraph-node");
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
-const { INFO, WELCOME_MESSAGE } = require("./data.js");
 const fs = require("fs");
+const { INFO, WELCOME_MESSAGE } = require("./data.js");
 
 if (!token) {
   throw new Error("TELEGRAM_BOT_TOKEN не задан в переменных окружения.");
