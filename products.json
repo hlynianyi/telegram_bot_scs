@@ -1,0 +1,171 @@
+[
+  {
+    "category": "Электро-мотоцикл",
+    "name": "Ducati Panigale",
+    "variants": [
+      {
+        "price": "134000",
+        "speed": "100-110",
+        "engine": "3000",
+        "controller": "5000"
+      },
+      {
+        "price": "154000",
+        "speed": "120-130",
+        "engine": "4000",
+        "controller": "8000"
+      }
+    ],
+    "images": [
+      "AgACAgIAAxkBAAIKWWZntULrQUj9xGaCuL4L424uG9LLAAJo5TEbAhdBS0F-iQ6Kl0YNAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIKW2ZntUbHqjpdbR_DPrTWGmtqqWSXAAJp5TEbAhdBS0QBSbkT6E8AAQEAAwIAA3kAAzUE",
+      "AgACAgIAAxkBAAIKXWZntUmKvsvXcKIeTGj1ff_yN7dGAAJq5TEbAhdBSyxswqaf2zliAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIKX2ZntUyi1-6_tX7qWEG1FgoQucCuAAJr5TEbAhdBS7Wp_8rkpsa7AQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIKYWZntVDAFCnSbMsRaIPkpatDZmvaAAJs5TEbAhdBSxHNjC6HA9bVAQADAgADeQADNQQ"
+    ],
+    "videos": []
+  },
+  {
+    "category": "Электро-мотоцикл",
+    "name": "Kawasaki Ninja  🥷 🥷",
+    "variants": [
+      {
+        "price": "105000",
+        "speed": "100-110",
+        "engine": "3000",
+        "controller": "5000"
+      },
+      {
+        "price": "125000",
+        "speed": "120-130",
+        "engine": "4000",
+        "controller": "8000"
+      },
+      {
+        "price": "177000",
+        "speed": "135",
+        "engine": "8000. 10000"
+      }
+    ],
+    "images": [
+      "AgACAgIAAxkBAAIKf2ZntgdEHXevpXLhO3CpvgxJvHkjAAJt5TEbAhdBS4_y5_TsV1I1AQADAgADeAADNQQ",
+      "AgACAgIAAxkBAAIKgWZnthE05jipLTudB1Hs57iDaSARAAJu5TEbAhdBS5daYfV7ZWCyAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIKg2ZnthZAuN3Bi4h7k-7L53PuCVwZAAJv5TEbAhdBS14gu1c7R_GBAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIKhWZnth3Z-G2P82uzM55jkJonvQK8AAJw5TEbAhdBS79EhjGck-3AAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIKh2ZntiR4krsr7LZyL9KBqykWwS6WAAJx5TEbAhdBS73Zl2m2IQ5cAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIKiWZnti9lnoCF5i09xONbDmlMlxWJAAJy5TEbAhdBS6A77zAHNB7sAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIKi2ZntjNvFhTrFvOH9M9Xp_O0480CAAJz5TEbAhdBS_5aaWt-beF6AQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIKjWZntjjduulInAzedOxdbcOpfQhbAAJ05TEbAhdBSwadI3z8XKNcAQADAgADeQADNQQ"
+    ],
+    "videos": [
+      "BAACAgIAAxkBAAIKj2Zntk-NzrAdub4x85-8HekDfhttAALUSgACAhdBSzGK28lyHQhWNQQ",
+      "BAACAgIAAxkBAAIKkWZntl79hO5yhXvcyW1HFH0CFJgZAALVSgACAhdBS5AfcjhaSAkENQQ"
+    ]
+  },
+  {
+    "category": "Электро-скутер",
+    "name": "Zuma",
+    "variants": [
+      {
+        "price": "52500",
+        "speed": "55-60",
+        "engine": "1500",
+        "controller": "1500"
+      },
+      {
+        "price": "60500",
+        "speed": "70-75",
+        "engine": "2000",
+        "controller": "3000"
+      },
+      {
+        "price": "85000",
+        "speed": "110-120",
+        "engine": "5000",
+        "controller": "8000"
+      }
+    ],
+    "images": [
+      "AgACAgIAAxkBAAIK82Znt-iwRAFER37O9KKtGgAB6384TgACeOUxGwIXQUsGhQw7Ma1CEAEAAwIAA3kAAzUE",
+      "AgACAgIAAxkBAAIK9WZnt-2NHV-K4zFCJ1i1lxoawQYSAAIk4zEbT3U5S7XKuVhEqldVAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIK92Znt_Fnggi9hRvDheEIrY9ovx5uAAJ55TEbAhdBS1gCGDMbVkarAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIK-WZnt_XNSN1RBCuwet5sJyVIZdUJAAJ65TEbAhdBS10QrgImJmzzAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIK-2Znt_nWED11IXs4ARMlvDkfo3AdAAJ75TEbAhdBS2bCoe_MapKEAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIK_WZnt_-pj_QLciWKValOL6TOFa5mAAJ85TEbAhdBS-uky4sy0sECAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIK_2ZnuAWvNu9bCVn-SFS2DST1wSddAAJ95TEbAhdBS6j8p8ElFlYFAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAILAWZnuBrpF_XXx5CCvx2Eeo_eOwFpAAIl4zEbT3U5S_3-9q3GvlyYAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAILA2ZnuB-Jya39uBXDIC7eJ2Az8gGGAAJ_5TEbAhdBS_D-HJVRaqedAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAILBWZnuCaJqHfUzDpNaud5dCmhO7KkAAKA5TEbAhdBS-6e9J15CavdAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAILB2ZnuCtqcegyz0_0QRRtQIniIer8AAIm4zEbT3U5S70AAdKmgmpyOQEAAwIAA3kAAzUE"
+    ],
+    "videos": [
+      "BAACAgIAAxkBAAILCWZnuD7hBAlNc5LN02G_DduAKeQNAALZSgACAhdBSzP6oqmb_JRPNQQ",
+      "BAACAgIAAxkBAAILC2ZnuEv9Nwee-vld0z9odSZ5pXLCAALaSgACAhdBS2GUHKwPF5d8NQQ"
+    ]
+  },
+  {
+    "category": "Электро-скутер",
+    "name": "Julong",
+    "variants": [
+      {
+        "price": "52500",
+        "speed": "55-60",
+        "engine": "1500",
+        "controller": "1500"
+      },
+      {
+        "price": "60500",
+        "speed": "70-75",
+        "engine": "2000",
+        "controller": "3000"
+      },
+      {
+        "price": "85000",
+        "speed": "110-120",
+        "engine": "5000",
+        "controller": "8000"
+      }
+    ],
+    "images": [
+      "AgACAgIAAxkBAAILSWZnua9IKkVAZWWlg3Vk9pjj67nJAAKC5TEbAhdBSxDDNiOqzzYRAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAILS2ZnubT_chSf0Un066bpCvxIxKKbAAKD5TEbAhdBS8OXfGtFGndHAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAILTWZnubidYX-lD8MAAfH-XCWyL4MuwwACXuUxGwIXQUuEnSgdRucECQEAAwIAA3kAAzUE",
+      "AgACAgIAAxkBAAILT2Znub429jx4KwLATBFPiG-GnVHMAAKE5TEbAhdBS-SH272vGoBVAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAILUWZnucMjm27cMXiG1xu6Jogaqbj9AAKF5TEbAhdBS9Nqx3xxO913AQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAILU2Znucgi2gqx6Jhckq61ij61xpCRAAKG5TEbAhdBSwgamN8DXdenAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAILVWZnucznpSFP7b_cvlnKlSIOqFZwAAKH5TEbAhdBSyzBKRQaxtjqAQADAgADeAADNQQ",
+      "AgACAgIAAxkBAAILV2ZnudFKYwpTjWobSNkZsEqixKKAAAKI5TEbAhdBS-AOpu3pYfswAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAILWWZnudrJyV6quPCG-9uVgda52gZqAAKJ5TEbAhdBSyVbrlM94FvnAQADAgADeQADNQQ"
+    ],
+    "videos": []
+  },
+  {
+    "category": "Электро-скутер",
+    "name": "Новое столетие N1",
+    "variants": [
+      {
+        "price": "43000",
+        "speed": "48-50",
+        "engine": "1000",
+        "controller": "1000"
+      },
+      {
+        "price": "56000",
+        "speed": "70-75",
+        "engine": "2000",
+        "controller": "3000"
+      }
+    ],
+    "images": [
+      "AgACAgIAAxkBAAILumZnvCgPmQePfeSQVZXnehT2DrmqAAJ15TEbAhdBS7h4WdTVWlMYAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAILvGZnvDV7c8z0G-ipWKBAdY0T_9CUAAKS5TEbAhdBS4kPsqmC1uc8AQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAILvmZnvDnFJ7FaT9qwuYf7CAkqFdnnAAJ25TEbAhdBS8TzDfhUid0nAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAILwGZnvD6hIE4IWX-hHGq6bPSyCA7PAAJ35TEbAhdBS4_LhsPyJDy8AQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAILwmZnvEMnBQ-PM8rbvIPCXPW3lHYEAAKT5TEbAhdBSwYSjccXeTjVAQADAgADeQADNQQ"
+    ],
+    "videos": [
+      "BAACAgIAAxkBAAILxGZnvFD7cT2MDhiS0yQa0fAoqH7HAALkSgACAhdBSwNxalmmTfgWNQQ",
+      "BAACAgIAAxkBAAILxmZnvFr_9_FJNzt7owge8599WFL5AALlSgACAhdBS7xkhDnjOq1wNQQ"
+    ]
+  }
+]

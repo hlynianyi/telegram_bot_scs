@@ -1,25 +1,27 @@
 require("dotenv").config(); // Загружаем переменные окружения из .env
+const token = process.env.TELEGRAM_BOT_TOKEN;
+const TELEGRAPH_TOKEN = process.env.TELEGRAPH_TOKEN;
+const ADMIN_ID = process.env.ADMIN_ID; // ID администратора
 const TelegramBot = require("node-telegram-bot-api");
+const Telegraph = require("telegraph-node");
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
-const { QUADRO, BIKES, INFO, SCOUTERS } = require("./data.js");
-const token = process.env.TELEGRAM_BOT_TOKEN;
-const TELEGRAPH_TOKEN = process.env.TELEGRAPH_TOKEN;
-const Telegraph = require("telegraph-node");
-const ph = new Telegraph();
+const { INFO, WELCOME_MESSAGE } = require("./data.js");
+const fs = require("fs");
 
 if (!token) {
   throw new Error("TELEGRAM_BOT_TOKEN не задан в переменных окружения.");
 }
-
 if (!TELEGRAPH_TOKEN) {
   throw new Error("TELEGRAPH_TOKEN не задан в переменных окружения.");
 }
+if (!ADMIN_ID) {
+  throw new Error("ADMIN_ID не задан в переменных окружения.");
+}
 
-// Экземпляр бота
+const ph = new Telegraph();
 const bot = new TelegramBot(token, { polling: true });
-bot.on("polling_error", (err) => console.log(err));
 
 // Настройка экспресс сервера
 const app = express();
@@ -43,15 +45,16 @@ const commands = [
 
 bot.setMyCommands(commands);
 
-const userStates = {};
-const welcomeMessage =
-  "Здравствуйте,\nВы можете использовать следующие команды:\n/start - Запуск бота\n/catalog - Здесь вы можете самостоятельно изучить весь каталог (мотоциклы, скутеры и т.д.)\n/info - Интересующие вас вопросы";
-const categoryEmptyMessage = `Товары данной категории скоро будут доступны. Пожалуйста, попробуйте позже.`;
-
 // Обработчик команды /start
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
-  bot.sendMessage(chatId, welcomeMessage);
+  bot.sendMessage(chatId, WELCOME_MESSAGE);
+});
+
+// Получение ID телеграм-пользователя
+bot.onText(/\/getid/, (msg) => {
+  console.log("User asking for ID :>> ", msg.chat.username, msg.chat.id);
+  bot.sendMessage(msg.chat.id, `Ваш ID: ${msg.chat.id}`);
 });
 
 // Обработчик команды /catalog
@@ -80,83 +83,37 @@ bot.onText(/\/catalog/, (msg) => {
   );
 });
 
-// Обработчик команды "Мотоциклы"
+// Обработчик команды "мотоциклы"
 bot.onText(/\мотоциклы/, (msg) => {
   const chatId = msg.chat.id;
   userStates[chatId] = "bikes";
-  if (BIKES.length !== 0) {
-    sendProductList(chatId, BIKES);
-  } else {
-    bot.sendMessage(chatId, categoryEmptyMessage);
-  }
+  sendProductList(chatId, "Электро-мотоцикл");
 });
 
-// Обработчик команды "Скутеры"
+// Обработчик команды "скутеры"
 bot.onText(/\скутеры/, (msg) => {
   const chatId = msg.chat.id;
   userStates[chatId] = "scouters";
-  if (SCOUTERS.length !== 0) {
-    sendProductList(chatId, SCOUTERS);
-  } else {
-    bot.sendMessage(chatId, categoryEmptyMessage);
-  }
+  sendProductList(chatId, "Электро-скутер");
 });
 
-// Обработчик команды "Квадроциклы"
-bot.onText(/\свадроциклы/, (msg) => {
+// Обработчик команды "квадроциклы"
+bot.onText(/\квадроциклы/, (msg) => {
   const chatId = msg.chat.id;
   userStates[chatId] = "quadrocycles";
-  if (QUADRO.length !== 0) {
-    sendProductList(chatId, QUADRO);
-  } else {
-    bot.sendMessage(chatId, categoryEmptyMessage);
-  }
+  sendProductList(chatId, "Квадроцикл");
 });
 
-bot.onText(/\вернуться/, (msg) => {
-  const chatId = msg.chat.id;
-  const currentState = userStates[chatId];
+async function sendProductList(chatId, categoryName) {
+  const allProducts = loadProducts();
+  const products = allProducts.filter((prod) => prod.category === categoryName);
 
-  if (currentState === "catalog") {
-    userStates[chatId] = "start";
-    bot.sendMessage(chatId, "Возвращаемся на стартовый экран.", {
-      reply_markup: {
-        keyboard: [[{ text: "/catalog" }], [{ text: "/info" }]],
-        resize_keyboard: true,
-        one_time_keyboard: true,
-      },
-    });
-  } else if (
-    currentState === "bikes" ||
-    currentState === "quadrocycles" ||
-    currentState === "scouters"
-  ) {
-    userStates[chatId] = "catalog";
-
-    bot.sendMessage(chatId, "Возвращаемся к каталогу.", {
-      reply_markup: {
-        keyboard: [
-          [{ text: "мотоциклы" }],
-          [{ text: "квадроциклы" }],
-          [{ text: "скутеры" }],
-        ],
-        resize_keyboard: true,
-        one_time_keyboard: true,
-      },
-    });
-  } else {
-    bot.sendMessage(chatId, "Возвращаемся на стартовый экран.", {
-      reply_markup: {
-        keyboard: [[{ text: "/catalog" }], [{ text: "/info" }]],
-        resize_keyboard: true,
-        one_time_keyboard: true,
-      },
-    });
+  if (products.length === 0) {
+    bot.sendMessage(chatId, "В настоящее время нет доступных товаров.");
+    return;
   }
-});
 
-async function sendProductList(chatId, category) {
-  for (const product of category) {
+  for (const [index, product] of products.entries()) {
     let content = [];
 
     content.push({
@@ -180,40 +137,87 @@ async function sendProductList(chatId, category) {
       });
     });
 
-    product.images.map((image) => {
-      content.push({
-        tag: "figure",
-        children: [
-          {
-            tag: "img",
-            attrs: {
-              src: image,
+    if (product.images) {
+      product.images.map((image) => {
+        content.push({
+          tag: "figure",
+          children: [
+            {
+              tag: "img",
+              attrs: {
+                src: image,
+              },
             },
-          },
-        ],
+          ],
+        });
       });
+    }
+
+    if (product.videos) {
+      product.videos.map((video) => {
+        content.push({
+          tag: "figure",
+          children: [
+            {
+              tag: "video",
+              attrs: {
+                src: video,
+                controls: true,
+              },
+            },
+          ],
+        });
+      });
+    }
+
+    let priceString = "";
+    product.variants.forEach((variant, idx) => {
+      priceString += `Модификация ${idx + 1}: ${variant.price} руб.\n`;
     });
+
+    const pageContent = product.variants.map((variant, idx) => {
+      return {
+        tag: "p",
+        children: [`Модификация ${idx + 1}: ${variant.price} руб.`],
+      };
+    });
+
+    if (pageContent.length === 0) {
+      pageContent.push({
+        tag: "p",
+        children: ["Информация о модификациях отсутствует"],
+      });
+    }
 
     try {
       const page = await ph.createPage(TELEGRAPH_TOKEN, "Small Shop", content);
 
-      let priceString = ``;
-      product.variants.forEach((variant, index) => {
-        priceString += `${variant.price}`;
-        if (index !== product.variants.length - 1) {
-          priceString += "/";
-        }
-      });
-
-      const sellerContactString = `@mistersleep11 - контакт продавца для заказа`;
-
-      const captionString = `${product.id + 1}. ${product.category} ${
+      const sellerContactString = `@mistersleep11 - контакт для заказа`;
+      let captionString = `${index + 1}. ${product.category} ${
         product.name
-      }\nЦена: ${priceString} руб.\n${sellerContactString}`;
+      }\n${sellerContactString}`;
+      if (product.variants.length > 1) {
+        captionString = `${captionString}\nЦена💰: ${
+          product.variants[0].price
+        } - ${product.variants.at(-1).price} руб.`;
+      } else {
+        captionString = `${captionString}\nЦена💰: ${product.variants[0].price} руб.`;
+      }
+
+      const mediaGroup = [
+        ...(product.images || []).map((image) => ({
+          type: "photo",
+          media: image,
+          parse_mode: "Markdown",
+        })),
+        ...(product.videos || []).map((video) => ({
+          type: "video",
+          media: video,
+          parse_mode: "Markdown",
+        })),
+      ];
 
       const options = {
-        caption: captionString,
-        parse_mode: "Markdown",
         reply_markup: {
           inline_keyboard: [
             [{ text: "Подробнее", url: `https://telegra.ph/${page.path}` }],
@@ -221,7 +225,13 @@ async function sendProductList(chatId, category) {
         },
       };
 
-      await bot.sendPhoto(chatId, product.images[0], options);
+      // Отправка медиафайлов группами по 10
+      for (let i = 0; i < mediaGroup.length; i += 10) {
+        const mediaChunk = mediaGroup.slice(i, i + 10);
+        await bot.sendMediaGroup(chatId, mediaChunk);
+      }
+
+      await bot.sendMessage(chatId, `${captionString}`, options);
     } catch (error) {
       console.error("Error on method createPage:", error);
       bot.sendMessage(
@@ -232,11 +242,157 @@ async function sendProductList(chatId, category) {
   }
 }
 
+const addProductSteps = {
+  awaiting_category: "awaiting_name",
+  awaiting_name: "awaiting_variant",
+  awaiting_variant: "awaiting_more_variants_or_media",
+  awaiting_more_variants_or_media: "awaiting_media",
+  awaiting_media: "complete",
+};
+
+const addProductMessages = {
+  awaiting_name: "Введите название товара.",
+  awaiting_variant:
+    "Введите первую комплектацию товара (цена, скорость, мотор, контроллер) через запятую.",
+  awaiting_more_variants_or_media:
+    "Введите следующую комплектацию товара или введите /skip для завершения.",
+  awaiting_media:
+    "Загрузите изображения или видео товара. Введите /skip для завершения.",
+};
+
+const userStates = {};
+let productBuffer = {}; // Временное хранилище для ввода данных о товаре
+
+// Обработчик команды /addproduct для администратора
+bot.onText(/\/addproduct/, (msg) => {
+  const chatId = msg.chat.id;
+  if (String(chatId) === String(ADMIN_ID)) {
+    userStates[chatId] = "awaiting_category";
+    productBuffer = {}; // Сбрасываем буфер
+    bot.sendMessage(chatId, "Введите категорию продукта:");
+  } else {
+    bot.sendMessage(chatId, "Вы не имеете прав для выполнения этой команды.");
+  }
+});
+
+// Функция для обработки добавления продукта и его сохранения
+bot.on("message", async (msg) => {
+  const chatId = msg.chat.id;
+  const text = msg.text;
+
+  if (chatId !== Number(ADMIN_ID)) return;
+
+  const currentStep = userStates[chatId];
+
+  if (currentStep in addProductSteps && currentStep !== "awaiting_media") {
+    if (
+      currentStep === "awaiting_variant" ||
+      currentStep === "awaiting_more_variants_or_media"
+    ) {
+      const [price, speed, engine, controller] = text
+        .split(",")
+        .map((item) => item.trim());
+
+      if (price !== "/skip") {
+        // Добавляем проверку на /skip
+        const variant = { price, speed, engine, controller };
+        if (!productBuffer.variants) {
+          productBuffer.variants = [];
+        }
+        productBuffer.variants.push(variant);
+      }
+
+      userStates[chatId] = "awaiting_more_variants_or_media";
+    } else {
+      productBuffer[currentStep.replace("awaiting_", "")] = text;
+      userStates[chatId] = addProductSteps[currentStep];
+    }
+    bot.sendMessage(chatId, addProductMessages[userStates[chatId]]);
+  }
+
+  if (currentStep === "awaiting_media" && (msg.photo || msg.video)) {
+    try {
+      const fileId = msg.photo
+        ? msg.photo[msg.photo.length - 1].file_id
+        : msg.video.file_id;
+      const mediaType = msg.photo ? "images" : "videos";
+      if (!productBuffer[mediaType]) {
+        productBuffer[mediaType] = [];
+      }
+      productBuffer[mediaType].push(fileId);
+      bot.sendMessage(
+        chatId,
+        `Медиа добавлено. Добавьте ещё или введите /skip для завершения.`
+      );
+    } catch (error) {
+      console.error("Ошибка при получении файла: ", error);
+      bot.sendMessage(
+        chatId,
+        "Произошла ошибка при добавлении медиа. Пожалуйста, попробуйте снова."
+      );
+    }
+  }
+
+  if (currentStep === "complete") {
+    saveProduct(chatId);
+  }
+});
+
+function saveProduct(chatId) {
+  const products = loadProducts();
+  productBuffer.images = productBuffer.images || [];
+  productBuffer.videos = productBuffer.videos || [];
+  products.push(productBuffer);
+  fs.writeFileSync("products.json", JSON.stringify(products, null, 2));
+  bot.sendMessage(chatId, "Продукт успешно сохранен.");
+  userStates[chatId] = null;
+  productBuffer = {};
+}
+
+function loadProducts() {
+  // Загрузка продуктов из JSON файла
+  if (fs.existsSync("products.json")) {
+    try {
+      const data = fs.readFileSync("products.json", "utf8");
+      if (data.trim().length === 0) {
+        return []; // Возвращаем пустой массив, если файл пуст
+      }
+      const products = JSON.parse(data);
+      // Проверка и исправление структуры данных
+      return products.map((product) => {
+        if (!Array.isArray(product.variants)) {
+          product.variants = [];
+        }
+        return product;
+      });
+    } catch (error) {
+      console.error("Ошибка при чтении файла products.json:", error);
+      return []; // Возвращаем пустой массив в случае ошибки парсинга
+    }
+  }
+  return [];
+}
+
+// Команда /skip для завершения ввода этапа
+bot.onText(/\/skip/, (msg) => {
+  const chatId = msg.chat.id;
+  const currentStep = userStates[chatId];
+
+  if (currentStep === "awaiting_more_variants_or_media") {
+    userStates[chatId] = "awaiting_media";
+    bot.sendMessage(chatId, addProductMessages[userStates[chatId]]);
+  } else if (currentStep === "awaiting_media") {
+    userStates[chatId] = "complete";
+    saveProduct(chatId);
+  }
+});
+
 bot.onText(/\/info/, (msg) => {
   const chatId = msg.chat.id;
   bot.sendMessage(chatId, INFO);
 });
 
+bot.on("polling_error", (err) => console.log(err));
 // Запуск экспресс сервера
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
