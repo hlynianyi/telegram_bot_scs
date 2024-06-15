@@ -44,7 +44,8 @@
       {
         "price": "177000",
         "speed": "135",
-        "engine": "8000. 10000"
+        "engine": "8000",
+        "controller": "10000"
       }
     ],
     "images": [

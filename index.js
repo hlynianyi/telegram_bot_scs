@@ -48,12 +48,13 @@ bot.setMyCommands(commands);
 // Обработчик команды /start
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
+  console.log(`User @${msg.chat.username} joined, ID:`, msg.chat.id);
   bot.sendMessage(chatId, WELCOME_MESSAGE);
 });
 
 // Получение ID телеграм-пользователя
 bot.onText(/\/getid/, (msg) => {
-  console.log("User asking for ID :>> ", msg.chat.username, msg.chat.id);
+  console.log(`User @${msg.chat.username} asking for ID:`, msg.chat.id);
   bot.sendMessage(msg.chat.id, `Ваш ID: ${msg.chat.id}`);
 });
 
@@ -396,5 +397,7 @@ bot.on("polling_error", (err) => console.log(err));
 // Запуск экспресс сервера
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  console.log(
+    `Server is running on port ${PORT}\n------------------------------`
+  );
 });

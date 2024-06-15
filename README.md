@@ -2,6 +2,12 @@
 
 ### Установка
 
+Установить NODE.JS на компьютер.
+
+```
+https://nodejs.org/en
+```
+
 Открыть терминал, скопировать ссылку ниже и вставить ее в нужной папке где будет находиться проект.
 
 ```
@@ -41,5 +47,5 @@ node bot.js
 ```
 TELEGRAM_BOT_TOKEN=7189278100:AAEpwuwyOaeBVKqRCDLEZWAGOJYlgFHN7wQ
 TELEGRAPH_TOKEN=3d7c6486245cb8254272805293ee790dec420891e778f150d6360b95c390
-ADMIN_ID=427986264
+ADMIN_ID= [TELEGRAM_UserID]
 ```
