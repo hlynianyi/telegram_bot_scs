@@ -2,7 +2,7 @@
 
 ### Установка
 
-Установить NODE.JS на компьютер.
+Установить Node.JS на компьютер.
 
 ```
 https://nodejs.org/en
@@ -24,7 +24,7 @@ git clone https://github.com/hlynianyi/telegram_bot_scs.git
 Вписать в терминале команду ниже
 
 ```
-node bot.js
+npm run bot
 ```
 
 Бот должен запуститься и реагировать на действия в телеграме.
