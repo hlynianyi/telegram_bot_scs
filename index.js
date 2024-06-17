@@ -254,11 +254,11 @@ const addProductSteps = {
 const addProductMessages = {
   awaiting_name: "Введите название товара.",
   awaiting_variant:
-    "Введите первую комплектацию товара (цена, скорость, мотор, контроллер) через запятую.",
+    "Введите первую комплектацию товара (цена, скорость, мотор, контроллер) через ЗАПЯТУЮ! (без указания рублей, км/ч и т.д)",
   awaiting_more_variants_or_media:
-    "Введите следующую комплектацию товара или введите /skip для завершения.",
+    "Введите следующую комплектацию (цена, скорость, мотор, контроллер) товара или введите /skip для завершения. (без указания рублей, км/ч и т.д)",
   awaiting_media:
-    "Загрузите изображения или видео товара. Введите /skip для завершения.",
+    "Загрузите изображение или видео товара (ПО ОДНОМУ ЗА РАЗ). Введите /skip для завершения.",
 };
 
 const userStates = {};
@@ -270,9 +270,15 @@ bot.onText(/\/addproduct/, (msg) => {
   if (String(chatId) === String(ADMIN_ID)) {
     userStates[chatId] = "awaiting_category";
     productBuffer = {}; // Сбрасываем буфер
-    bot.sendMessage(chatId, "Введите категорию продукта:");
+    bot.sendMessage(
+      chatId,
+      "Введите категорию продукта (например: Электро-мотоцикл, Электро-скутер):"
+    );
   } else {
-    bot.sendMessage(chatId, "Вы не имеете прав для выполнения этой команды.");
+    bot.sendMessage(
+      chatId,
+      "Вы не имеете прав для выполнения этой команды, действие доступно только администратору."
+    );
   }
 });
 
@@ -280,7 +286,7 @@ bot.onText(/\/addproduct/, (msg) => {
 bot.on("message", async (msg) => {
   const chatId = msg.chat.id;
   const text = msg.text;
-
+  console.log("text:> ", text);
   if (chatId !== Number(ADMIN_ID)) return;
 
   const currentStep = userStates[chatId];
@@ -290,6 +296,7 @@ bot.on("message", async (msg) => {
       currentStep === "awaiting_variant" ||
       currentStep === "awaiting_more_variants_or_media"
     ) {
+      console.log("Попытка добавить комплектацию :>> ", text);
       const [price, speed, engine, controller] = text
         .split(",")
         .map((item) => item.trim());

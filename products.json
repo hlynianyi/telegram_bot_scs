@@ -168,5 +168,273 @@
       "BAACAgIAAxkBAAILxGZnvFD7cT2MDhiS0yQa0fAoqH7HAALkSgACAhdBSwNxalmmTfgWNQQ",
       "BAACAgIAAxkBAAILxmZnvFr_9_FJNzt7owge8599WFL5AALlSgACAhdBS7xkhDnjOq1wNQQ"
     ]
+  },
+  {
+    "category": "Электро-мотоцикл",
+    "name": "Горизонт S",
+    "variants": [
+      {
+        "price": "96000",
+        "speed": "100-110",
+        "engine": "3000",
+        "controller": "5000"
+      },
+      {
+        "price": "117000",
+        "speed": "120-130",
+        "engine": "4000",
+        "controller": "8000"
+      },
+      {
+        "price": "170000",
+        "speed": "140-145",
+        "engine": "8000",
+        "controller": "10000"
+      }
+    ],
+    "images": [
+      "AgACAgIAAxkBAAIPZmZtnszmPVj8hzlsAuh4qC7mu2kBAALA2zEbTqRwS6KyqEmWK2N-AQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIPZ2Ztnsz7w20LeIJAJ_MHw9NLVrbvAALF2zEbTqRwS6MOMg8XzAUsAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIPaGZtnsy6rQ0fZasFeT20oladuqtIAALG2zEbTqRwS_84MVTeV_gsAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIPaWZtnszHJcsF-gH9Q5pIc80lJdYEAALB2zEbTqRwS334vwx83Q6GAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIPamZtnsxZQc1Bk9OZphxk7PeNgq6CAALH2zEbTqRwS4_gnJp1GW2YAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIPa2ZtnszpK9P34QXUuR7Vh4wtqezYAALI2zEbTqRwS6nk8HEfV9W0AQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIPbGZtnsxo9GqGcYssOjDAVS0Hj92EAALC2zEbTqRwSxWjQO-OiAKHAQADAgADeQADNQQ"
+    ],
+    "videos": [
+      "BAACAgIAAxkBAAIPbWZtnsw-_ebmTNFc_qXGDlZW3ad3AAJLUgACTqRwSw1G_K8hm_jXNQQ"
+    ]
+  },
+  {
+    "category": "Электро-мотоцикл",
+    "name": "ЯмахаR3 / Yamaha R3",
+    "variants": [
+      {
+        "price": "103000",
+        "speed": "100-110",
+        "engine": "3000",
+        "controller": "5000"
+      },
+      {
+        "price": "123000",
+        "speed": "120-130",
+        "engine": "4000",
+        "controller": "8000"
+      },
+      {
+        "price": "173000",
+        "speed": "140-145",
+        "engine": "8000",
+        "controller": "10000"
+      }
+    ],
+    "images": [
+      "AgACAgIAAxkBAAIPuWZto7CzuNAzT5b0SawcNo7H__W0AAL_2zEbTqRwS1_0cru9uuNHAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIPumZto7DK1QRAVBhPhwvOlVEzUtJJAAIB3DEbTqRwS3qI8bi8vdveAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIPu2Zto7Axqkk_UjMEf7XhqG5KxX2cAAID3DEbTqRwS9n1WAb_BVUiAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIPvGZto7BbyXVcXTr7QxaDamjwNT7lAAIE3DEbTqRwSw14Xh-6p9AeAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIPvWZto7D7CaP7LAph5xx4YxlwSXsAAwXcMRtOpHBLE7lYwm71MnEBAAMCAAN5AAM1BA",
+      "AgACAgIAAxkBAAIPvmZto7CBIs0mptPtENZYQS9_3gmAAAIG3DEbTqRwSw23oRpG6QrOAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIPv2Zto7Ci9Pxf7NhtjasOBIsoliOgAAIH3DEbTqRwS3JI8iG_dEs3AQADAgADeQADNQQ"
+    ],
+    "videos": [
+      "BAACAgIAAxkBAAIPx2ZtpOahrjEAATjPnCdPwdDoI25l5gAChVIAAk6kcEsXAAE4lJL-t_A1BA"
+    ]
+  },
+  {
+    "category": "Электро-мотоцикл",
+    "name": "Ducati Diavel",
+    "variants": [
+      {
+        "price": "204000",
+        "speed": "100-110",
+        "engine": "3000",
+        "controller": "5000"
+      },
+      {
+        "price": "224000",
+        "speed": "120-125",
+        "engine": "4000",
+        "controller": "8000"
+      },
+      {
+        "price": "268000",
+        "speed": "135-140",
+        "engine": "8000",
+        "controller": "10000"
+      }
+    ],
+    "images": [
+      "AgACAgIAAxkBAAIQEGZtqPjPo9vt1-NHJJr9t2ez4LR0AAIf3DEbTqRwSyv3UIzOf_jzAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIQEmZtqP7T-JPg9tHyen4YKdKFA7HPAAIo3DEbTqRwSz4EHtMmXQY6AQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIQFGZtqQX4cqwrKvhoauzWp-PGFdlLAAJD3DEbTqRwS56WXcwBTTVvAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIQFmZtqRjulBsIORkeeLa7dzjlLxN_AAJJ3DEbTqRwS73g03Xnw-npAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIQF2ZtqRjYbiAH3rzOBLbA6lxGIyd5AAJO3DEbTqRwS9HFefKTXmtFAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIQGmZtqSuAPItarH_ROLJrhWHfn-LuAAJk3DEbTqRwS_jSUzNQE26FAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIQImZtqaXjW4cgS9KuP3oBISjYRfQvAAJ33DEbTqRwSxR5YumzjsnKAQADAgADeAADNQQ"
+    ],
+    "videos": [
+      "BAACAgIAAxkBAAIQHGZtqVBhq9TUI29W-fEPjd5BV27cAAK1UgACTqRwS5y4NrcJMBVVNQQ",
+      "BAACAgIAAxkBAAIQHmZtqWTmQAjXO9LJ7R06AsW8NhnpAAK4UgACTqRwS6n3Gn-9ldjENQQ",
+      "BAACAgIAAxkBAAIQIGZtqXZkWz9mxo1gk7Paleu6_ga6AAK6UgACTqRwSzb3TINu-6LsNQQ"
+    ]
+  },
+  {
+    "category": "Электро-мотоцикл",
+    "name": "Little monster 👹",
+    "variants": [
+      {
+        "price": "57000",
+        "speed": "55-60",
+        "engine": "1500",
+        "controller": "1500"
+      },
+      {
+        "price": "64000",
+        "speed": "70-75",
+        "engine": "2000",
+        "controller": "3000"
+      },
+      {
+        "price": "99000",
+        "speed": "115-120",
+        "engine": "5000",
+        "controller": "8000"
+      }
+    ],
+    "videos": [
+      "BAACAgIAAxkBAAIR7WZtyXZfF63_2kJMXK9lLYI9iVfDAAJOVAACTqRwS3kGp22gREwPNQQ"
+    ],
+    "images": [
+      "AgACAgIAAxkBAAIR72ZtyYB4_9PyoazY8NAKYTYjgbgQAAJY3TEbTqRwS4x2x8UoVwzyAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIR8WZtyYvMyHFFcWp9Tq06UO_x2buAAAJa3TEbTqRwS8Xbeztze9kzAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIR82ZtyZhv-pCJzlYXvfKMwjzijLtQAAJc3TEbTqRwS_dIdS4eQDDzAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIR9WZtyaJhKhpFpbBCjtNhmARJK6p3AAJd3TEbTqRwSza2wTL3Li1WAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIR92ZtyagYIsmdn6SzOCTCS0M4r6FIAAJe3TEbTqRwS9t2tfloLbiAAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIR-WZtya8fwaJ0e79cTN1p3BGotcunAAJh3TEbTqRwS9lwqtCY-idEAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIR-2ZtycJVPgwDwwftmGi72ASja_uMAAJi3TEbTqRwS_eOfGW6vf3_AQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIR_WZtycwj7BKLstHkNUK2hXasN3TaAAJj3TEbTqRwS38ckjSG_xBuAQADAgADeAADNQQ",
+      "AgACAgIAAxkBAAIR_2ZtyeFaUQc1EUFRMIrAHWywl1LTAAJm3TEbTqRwS4rqQrFmB8kIAQADAgADeQADNQQ"
+    ]
+  },
+  {
+    "category": "Электро-мотоцикл",
+    "name": "Venum 🐍",
+    "variants": [
+      {
+        "price": "57000",
+        "speed": "55-60",
+        "engine": "1500",
+        "controller": "1500"
+      },
+      {
+        "price": "64000",
+        "speed": "70-75",
+        "engine": "2000",
+        "controller": "3000"
+      },
+      {
+        "price": "99000",
+        "speed": "115-120",
+        "engine": "5000",
+        "controller": "8000"
+      }
+    ],
+    "images": [
+      "AgACAgIAAxkBAAISFGZtzB0M9JQBBRyKsXSNY9frAUSAAAJw3TEbTqRwSyGs_IOnQeZlAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAISFmZtzCFmycX3NUFTajUOFjiFfYpeAAJx3TEbTqRwSzI1e3iiCUZuAQADAgADeAADNQQ",
+      "AgACAgIAAxkBAAISGGZtzCVhWdDV-VeCOjWwooXWa8OIAAJy3TEbTqRwS8wkd0otQ4TRAQADAgADeAADNQQ",
+      "AgACAgIAAxkBAAISGmZtzCnIs9pr32aMj4J3Oe2FWt4QAAJz3TEbTqRwS6uSOKpXazEoAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAISHGZtzC0ZoRRh7ws6EjbXW7niCXd0AAJ03TEbTqRwS7AsqhMWKmYWAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAISHmZtzDFOjftdm7mp9ZZlXV-64jniAAJ13TEbTqRwS5GQd1IGYsQnAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAISIGZtzDf9PT95q3jCK3e1MCQbWHCHAAJ23TEbTqRwS8AUmcLNnxFFAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAISImZtzDxsHl9E-iOCfA4QKRC2xQ8mAAJ33TEbTqRwS4kH3cDWgiQyAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAISJGZtzIfcsHoJE97sj6jZBWyMSmebAAJ53TEbTqRwS2mAB1jolAMpAQADAgADeQADNQQ"
+    ],
+    "videos": []
+  },
+  {
+    "category": "Электро-мотоцикл",
+    "name": "z6",
+    "variants": [
+      {
+        "price": "57000",
+        "speed": "55-60",
+        "engine": "1500",
+        "controller": "1500"
+      },
+      {
+        "price": "64000",
+        "speed": "70-75",
+        "engine": "2000",
+        "controller": "3000"
+      },
+      {
+        "price": "85500",
+        "speed": "100-110",
+        "engine": "3000",
+        "controller": "5000"
+      },
+      {
+        "price": "99000",
+        "speed": "115-120",
+        "engine": "5000",
+        "controller": "8000"
+      }
+    ],
+    "images": [
+      "AgACAgIAAxkBAAISO2ZtzbV-Eu9jeUgdHY82tKJkXNa1AAKB3TEbTqRwS5Havd7TY7NmAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAISPWZtzciX3aP2psKJCmxl9jYgLfzUAAKC3TEbTqRwS2bJBTu575-SAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAISP2ZtzdFCxWq5BiAkzqNb1EBDc5ZvAAKD3TEbTqRwS5m0A6ba228GAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAISQWZtzd3dr-VClkFrXv6rC8-EIJ3vAAKE3TEbTqRwS4pAU8HkaxyDAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAISQ2ZtzefG5NOELaBERhRkRhEvFp_ZAAKF3TEbTqRwS0lOCvJiKT15AQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAISRWZtzfJrvz2Zua9TU45OsmChX9qSAAKG3TEbTqRwS-e51rCKgvZXAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAISR2ZtzhQSuIEPwyGy56Lj8XU5uKO6AAKI3TEbTqRwS_tes5ndmxWrAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAISSWZtzigb6cyllnk1xMhcOFH1LEKlAAKJ3TEbTqRwSx7gfALXqpEJAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAISS2Ztzjc0ReyVqHzG-uoCJ8R9SRD4AAKL3TEbTqRwSyfPEXjVCfrxAQADAgADeQADNQQ"
+    ],
+    "videos": []
+  },
+  {
+    "category": "Электро-мотоцикл",
+    "name": "Ducati street fighter M8",
+    "variants": [
+      {
+        "price": "67000",
+        "speed": "55-60",
+        "engine": "1500",
+        "controller": "1500"
+      },
+      {
+        "price": "73000",
+        "speed": "70-75",
+        "engine": "2000",
+        "controller": "3000"
+      },
+      {
+        "price": "96000",
+        "speed": "100-100",
+        "engine": "3000",
+        "controller": "5000"
+      },
+      {
+        "price": "109500",
+        "speed": "115-120",
+        "engine": "5000",
+        "controller": "8000"
+      }
+    ],
+    "images": [
+      "AgACAgIAAxkBAAISYmZt0LbaOsH49aNRfAABI6It0WbnzQACmt0xG06kcEsUVhYxCzAxowEAAwIAA3kAAzUE",
+      "AgACAgIAAxkBAAISZGZt0Mge6u-3UFHQvns-b6Ngw1KcAAKd3TEbTqRwSzGsuLYfgtc3AQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAISZmZt0NtJvGCYKg2c53yCgVv-jlIkAAKf3TEbTqRwS2ydNpizTx6JAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAISaGZt0OOahIetUH1ZCa_fuGqSA03GAAKg3TEbTqRwS0KP2U9djcFcAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAISamZt0O3krnY90xgKZtHB_FiTdThGAAKh3TEbTqRwSx1ZcS4fAwXgAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAISbGZt0Rbh2YY5ATq0O8d5x12_bkh1AAKi3TEbTqRwS2GnyBAPmj1lAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAISbmZt0SUAAfDW86o7mTE2WbmZQOyElgACo90xG06kcEuwSI297qdxlQEAAwIAA3kAAzUE",
+      "AgACAgIAAxkBAAIScGZt0S7kzTLSreBItOTh1uXzye9PAAKk3TEbTqRwS5GzsFDYftgcAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIScmZt0UCsgpLioVIcvAnnq6HAJbiSAAKl3TEbTqRwS6G2Kq_JYybHAQADAgADeQADNQQ"
+    ],
+    "videos": []
   }
 ]
