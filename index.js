@@ -5,10 +5,10 @@ const ADMIN_ID = process.env.ADMIN_ID; // ID администратора
 const TelegramBot = require("node-telegram-bot-api");
 const Telegraph = require("telegraph-node");
 const express = require("express");
-const path = require("path");
 const bodyParser = require("body-parser");
 const fs = require("fs");
 const { INFO, WELCOME_MESSAGE } = require("./data.js");
+const { capitalizeFirstLetter, loadProducts } = require("./utils.js");
 
 if (!token) {
   throw new Error("TELEGRAM_BOT_TOKEN не задан в переменных окружения.");
@@ -20,13 +20,33 @@ if (!ADMIN_ID) {
   throw new Error("ADMIN_ID не задан в переменных окружения.");
 }
 
+const userStates = {};
+let productBuffer = {}; // Временное хранилище для ввода данных о товаре
+
+const addProductSteps = {
+  awaiting_category: "awaiting_name",
+  awaiting_name: "awaiting_variant",
+  awaiting_variant: "awaiting_more_variants_or_media",
+  awaiting_more_variants_or_media: "awaiting_media",
+  awaiting_media: "complete",
+};
+
+const addProductMessages = {
+  awaiting_name: "Введите название товара:",
+  awaiting_variant:
+    "Введите первую комплектацию товара (цена, скорость, мотор, контроллер) через ЗАПЯТУЮ (без указания рублей, км/ч и т.д):",
+  awaiting_more_variants_or_media:
+    "Введите следующую комплектацию (цена, скорость, мотор, контроллер) товара или введите /skip для завершения (без указания рублей, км/ч и т.д):",
+  awaiting_media:
+    "Загрузите изображение или видео товара (ПО ОДНОМУ ЗА РАЗ). Введите /skip для завершения:",
+};
+
 const ph = new Telegraph();
 const bot = new TelegramBot(token, { polling: true });
 
 // Настройка экспресс сервера
 const app = express();
 app.use(bodyParser.json());
-app.use("/assets", express.static(path.join(__dirname, "assets")));
 
 const commands = [
   {
@@ -107,27 +127,57 @@ bot.onText(/\квадроциклы/, (msg) => {
   sendProductList(chatId, "квадроцикл");
 });
 
-function capitalizeFirstLetter(string) {
-  if (!string) return string;
-  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
-}
+// Обработчик команды /addproduct для администратора
+bot.onText(/\/addproduct/, (msg) => {
+  const chatId = msg.chat.id;
+  if (String(chatId) === String(ADMIN_ID)) {
+    userStates[chatId] = "awaiting_category";
+    productBuffer = {}; // Сбрасываем буфер
+    bot.sendMessage(
+      chatId,
+      "Введите категорию продукта (например: Электро-мотоцикл, Электро-скутер):"
+    );
+  } else {
+    bot.sendMessage(
+      chatId,
+      "Вы не имеете прав для выполнения этой команды, действие доступно только администратору."
+    );
+  }
+});
+
+// Команда /skip для завершения ввода этапа
+bot.onText(/\/skip/, (msg) => {
+  const chatId = msg.chat.id;
+  const currentStep = userStates[chatId];
+
+  if (currentStep === "awaiting_more_variants_or_media") {
+    userStates[chatId] = "awaiting_media";
+    bot.sendMessage(chatId, addProductMessages[userStates[chatId]]);
+  } else if (currentStep === "awaiting_media") {
+    userStates[chatId] = "complete";
+    saveProduct(chatId);
+  }
+});
+
+bot.onText(/\/info/, (msg) => {
+  const chatId = msg.chat.id;
+  bot.sendMessage(chatId, INFO);
+});
 
 async function sendProductList(chatId, categoryName) {
   const allProducts = loadProducts();
-  const products = allProducts.filter((prod) => {
-    return (
+  const products = allProducts.filter(
+    (prod) =>
       String(prod.category).toLowerCase() === String(categoryName).toLowerCase()
-    );
-  });
+  );
 
-  if (products.length === 0) {
+  if (!products.length) {
     bot.sendMessage(chatId, "В настоящее время нет доступных товаров.");
     return;
   }
 
   for (const [index, product] of products.entries()) {
     let content = [];
-
     content.push({
       tag: "figcaption",
       children: [capitalizeFirstLetter(product.category), " - ", product.name],
@@ -164,7 +214,6 @@ async function sendProductList(chatId, categoryName) {
         });
       });
     }
-
     if (product.videos) {
       product.videos.map((video) => {
         content.push({
@@ -202,11 +251,8 @@ async function sendProductList(chatId, categoryName) {
     }
 
     try {
-      const page = await ph.createPage(TELEGRAPH_TOKEN, "Small Shop", content);
-
       const sellerContactString = `@mistersleep11 - контакт для заказа`;
       const categoryFormatted = capitalizeFirstLetter(product.category);
-
       let captionString = `${index + 1}. ${categoryFormatted} ${
         product.name
       }\n${sellerContactString}`;
@@ -235,18 +281,18 @@ async function sendProductList(chatId, categoryName) {
       const options = {
         reply_markup: {
           inline_keyboard: [
-            [{ text: "Подробнее", url: `https://telegra.ph/${page.path}` }],
+            [{ text: "Подробнее", url: `${product.detailsPath}` }],
           ],
         },
       };
+
+      await bot.sendMessage(chatId, `${captionString}`, options);
 
       // Отправка медиафайлов группами по 10
       for (let i = 0; i < mediaGroup.length; i += 10) {
         const mediaChunk = mediaGroup.slice(i, i + 10);
         await bot.sendMediaGroup(chatId, mediaChunk);
       }
-
-      await bot.sendMessage(chatId, `${captionString}`, options);
     } catch (error) {
       console.error("Error on method createPage:", error);
       bot.sendMessage(
@@ -257,54 +303,17 @@ async function sendProductList(chatId, categoryName) {
   }
 }
 
-const addProductSteps = {
-  awaiting_category: "awaiting_name",
-  awaiting_name: "awaiting_variant",
-  awaiting_variant: "awaiting_more_variants_or_media",
-  awaiting_more_variants_or_media: "awaiting_media",
-  awaiting_media: "complete",
-};
-
-const addProductMessages = {
-  awaiting_name: "Введите название товара:",
-  awaiting_variant:
-    "Введите первую комплектацию товара (цена, скорость, мотор, контроллер) через ЗАПЯТУЮ (без указания рублей, км/ч и т.д):",
-  awaiting_more_variants_or_media:
-    "Введите следующую комплектацию (цена, скорость, мотор, контроллер) товара или введите /skip для завершения (без указания рублей, км/ч и т.д):",
-  awaiting_media:
-    "Загрузите изображение или видео товара (ПО ОДНОМУ ЗА РАЗ). Введите /skip для завершения:",
-};
-
-const userStates = {};
-let productBuffer = {}; // Временное хранилище для ввода данных о товаре
-
-// Обработчик команды /addproduct для администратора
-bot.onText(/\/addproduct/, (msg) => {
-  const chatId = msg.chat.id;
-  if (String(chatId) === String(ADMIN_ID)) {
-    userStates[chatId] = "awaiting_category";
-    productBuffer = {}; // Сбрасываем буфер
-    bot.sendMessage(
-      chatId,
-      "Введите категорию продукта (например: Электро-мотоцикл, Электро-скутер):"
-    );
-  } else {
-    bot.sendMessage(
-      chatId,
-      "Вы не имеете прав для выполнения этой команды, действие доступно только администратору."
-    );
-  }
-});
-
 // Функция для обработки добавления продукта и его сохранения
 bot.on("message", async (msg) => {
   const chatId = msg.chat.id;
   const text = msg.text;
-  console.log("action:>> ", text);
+
+  if (text !== "/start")
+    console.log("action by:>", `@${msg.chat.username} - `, text);
+
   if (chatId !== Number(ADMIN_ID)) return;
 
   const currentStep = userStates[chatId];
-
   if (currentStep in addProductSteps && currentStep !== "awaiting_media") {
     if (
       currentStep === "awaiting_variant" ||
@@ -360,59 +369,52 @@ bot.on("message", async (msg) => {
   }
 });
 
-function saveProduct(chatId) {
+async function saveProduct(chatId) {
   const products = loadProducts();
   productBuffer.images = productBuffer.images || [];
   productBuffer.videos = productBuffer.videos || [];
+
+  console.log("@saveProduct func:>> ", productBuffer);
+  let content = [];
+
+  content.push({
+    tag: "figcaption",
+    children: [
+      capitalizeFirstLetter(productBuffer.category),
+      " - ",
+      productBuffer.name,
+    ],
+  });
+  content.push({
+    tag: "p",
+    children: [`Цены указаны без 🔋 АКБ 🔋!`],
+  });
+  productBuffer.variants.forEach((variant, idx) => {
+    content.push({
+      tag: "p",
+      children: [
+        `Модификация №${idx + 1}:\n`,
+        `Цена: 💵${variant.price} руб.\n`,
+        `Скорость: 🚀${variant.speed} км/ч.\n`,
+        `Мотор колесо: ${variant.engine}w.\n`,
+        `Контроллер: ${variant.controller}w.\n`,
+      ],
+    });
+  });
+
+  const page = await ph.createPage(
+    TELEGRAPH_TOKEN,
+    "Small Shop China",
+    content
+  );
+  productBuffer.detailsPath = page.url;
+
   products.push(productBuffer);
   fs.writeFileSync("products.json", JSON.stringify(products, null, 2));
   bot.sendMessage(chatId, "Продукт успешно сохранен.");
   userStates[chatId] = null;
   productBuffer = {};
 }
-
-function loadProducts() {
-  // Загрузка продуктов из JSON файла
-  if (fs.existsSync("products.json")) {
-    try {
-      const data = fs.readFileSync("products.json", "utf8");
-      if (data.trim().length === 0) {
-        return []; // Возвращаем пустой массив, если файл пуст
-      }
-      const products = JSON.parse(data);
-      // Проверка и исправление структуры данных
-      return products.map((product) => {
-        if (!Array.isArray(product.variants)) {
-          product.variants = [];
-        }
-        return product;
-      });
-    } catch (error) {
-      console.error("Ошибка при чтении файла products.json:", error);
-      return []; // Возвращаем пустой массив в случае ошибки парсинга
-    }
-  }
-  return [];
-}
-
-// Команда /skip для завершения ввода этапа
-bot.onText(/\/skip/, (msg) => {
-  const chatId = msg.chat.id;
-  const currentStep = userStates[chatId];
-
-  if (currentStep === "awaiting_more_variants_or_media") {
-    userStates[chatId] = "awaiting_media";
-    bot.sendMessage(chatId, addProductMessages[userStates[chatId]]);
-  } else if (currentStep === "awaiting_media") {
-    userStates[chatId] = "complete";
-    saveProduct(chatId);
-  }
-});
-
-bot.onText(/\/info/, (msg) => {
-  const chatId = msg.chat.id;
-  bot.sendMessage(chatId, INFO);
-});
 
 // Обработка ошибок polling
 bot.on("polling_error", (error) => {

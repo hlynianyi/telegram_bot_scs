@@ -14,7 +14,7 @@ https://nodejs.org/en
 git clone https://github.com/hlynianyi/telegram_bot_scs.git
 ```
 
-Вписать `npm install` && `npm ci` после. (убедиться что Node.js установлен на компьютере, для проверки вписать команду `node -v`)
+Вписать `npm install` после. (убедиться что Node.js установлен на компьютере, для проверки вписать команду `node -v`)
 Это установит необходимые зависимости(пакеты необходимые для работы проекта с внешними источниками).
 
 После этого можно приступать к запуску.
@@ -47,5 +47,5 @@ npm run bot
 ```
 TELEGRAM_BOT_TOKEN=7189278100:AAEpwuwyOaeBVKqRCDLEZWAGOJYlgFHN7wQ
 TELEGRAPH_TOKEN=3d7c6486245cb8254272805293ee790dec420891e778f150d6360b95c390
-ADMIN_ID= [TELEGRAM_UserID]
+ADMIN_ID=[/getid вствлять сюда]
 ```
