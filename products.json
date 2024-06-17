@@ -396,7 +396,7 @@
     "videos": []
   },
   {
-    "category": "Электро-мотоцикл",
+    "category": "электро-мотоцикл",
     "name": "Ducati street fighter M8",
     "variants": [
       {
@@ -425,16 +425,60 @@
       }
     ],
     "images": [
-      "AgACAgIAAxkBAAISYmZt0LbaOsH49aNRfAABI6It0WbnzQACmt0xG06kcEsUVhYxCzAxowEAAwIAA3kAAzUE",
-      "AgACAgIAAxkBAAISZGZt0Mge6u-3UFHQvns-b6Ngw1KcAAKd3TEbTqRwSzGsuLYfgtc3AQADAgADeQADNQQ",
-      "AgACAgIAAxkBAAISZmZt0NtJvGCYKg2c53yCgVv-jlIkAAKf3TEbTqRwS2ydNpizTx6JAQADAgADeQADNQQ",
-      "AgACAgIAAxkBAAISaGZt0OOahIetUH1ZCa_fuGqSA03GAAKg3TEbTqRwS0KP2U9djcFcAQADAgADeQADNQQ",
-      "AgACAgIAAxkBAAISamZt0O3krnY90xgKZtHB_FiTdThGAAKh3TEbTqRwSx1ZcS4fAwXgAQADAgADeQADNQQ",
-      "AgACAgIAAxkBAAISbGZt0Rbh2YY5ATq0O8d5x12_bkh1AAKi3TEbTqRwS2GnyBAPmj1lAQADAgADeQADNQQ",
-      "AgACAgIAAxkBAAISbmZt0SUAAfDW86o7mTE2WbmZQOyElgACo90xG06kcEuwSI297qdxlQEAAwIAA3kAAzUE",
-      "AgACAgIAAxkBAAIScGZt0S7kzTLSreBItOTh1uXzye9PAAKk3TEbTqRwS5GzsFDYftgcAQADAgADeQADNQQ",
-      "AgACAgIAAxkBAAIScmZt0UCsgpLioVIcvAnnq6HAJbiSAAKl3TEbTqRwS6G2Kq_JYybHAQADAgADeQADNQQ"
+      "AgACAgIAAxkBAAIYyGZwCur_iVBZb8fyCA6iSpurDUyEAALu5TEbHeeBS2_adEadyna4AQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIYymZwC19mSnMtSjbzHdmjm2niMJuvAALz5TEbHeeBS-dmaPwTXBbKAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIYzGZwC2pOE1WAUnZZHaPcfbC7gQRpAAL05TEbHeeBSy7Ben476OZJAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIYzmZwC3GOuaq0N2elC685j9YqqPqvAAL15TEbHeeBS4GEPgrHmN4wAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIY0GZwC4FL_kCRX4SU8Wzfus8NxZP6AAL25TEbHeeBS8S9_Hl7M8QAAQEAAwIAA3gAAzUE",
+      "AgACAgIAAxkBAAIY0mZwC4__FyaOXDhKH2wKhjf6nIBSAAL35TEbHeeBS0pIim2MtLanAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIY1GZwC5u4szutsSRF3SqidtZalIiGAAL45TEbHeeBS1otrIrGpHxiAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIY1mZwC98V_QSLn55W4QtXD2BXmL7IAAL75TEbHeeBS9EuSUzf4EkrAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIY2GZwC_Xc7vgxytdrWgABWVDfRHMNCQACpd0xG06kcEuhtiqvyWMmxwEAAwIAA3kAAzUE"
     ],
     "videos": []
+  },
+  {
+    "category": "электро-мотоцикл",
+    "name": "M3M5",
+    "variants": [
+      {
+        "price": "50000",
+        "speed": "55-60",
+        "engine": "1500",
+        "controller": "1500"
+      },
+      {
+        "price": "57500",
+        "speed": "70-75",
+        "engine": "2000",
+        "controller": "3000"
+      },
+      {
+        "price": "80000",
+        "speed": "100-110",
+        "engine": "3000",
+        "controller": "5000"
+      },
+      {
+        "price": "92500",
+        "speed": "115-120",
+        "engine": "5000",
+        "controller": "8000"
+      }
+    ],
+    "images": [
+      "AgACAgIAAxkBAAIY92ZwDsuJQAoga0d62yZ6IfjUKvOdAAIE5jEbHeeBS0b-ykw37dDLAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIY-WZwDtBZGmeCMFEv0QgrKzzsAzmKAAIF5jEbHeeBS_-_qT_CikHeAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIY-2ZwDtdIn6K4yUeatw3I3yn9aGXpAAIH5jEbHeeBS77_UlJPNYfkAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIY_WZwDt1dY7pwEuAVE4L_3ohENQlBAAII5jEbHeeBS709HtbQarNOAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIY_2ZwDuHP30z5DLJeJpAzOu140N5YAAIL5jEbHeeBS9kdqcCtymr7AQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIZAWZwDuXvn15_90OQcqMAAXn33vA34wACDOYxGx3ngUs6XQ3D83wQnQEAAwIAA3kAAzUE",
+      "AgACAgIAAxkBAAIZA2ZwDvRqOFoF79rGizL1zqnHUch8AAIN5jEbHeeBS9yAFK8bA15AAQADAgADeAADNQQ",
+      "AgACAgIAAxkBAAIZV2ZwENvAyZQY0c0U6uM_JZFAnttxAAIV5jEbHeeBSxOxveNmr-yMAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAIZWWZwEPAh4XYjAx718WHwLbX7VK5JAAIW5jEbHeeBS-58EsTuOEWpAQADAgADeQADNQQ"
+    ],
+    "videos": [
+      "BAACAgIAAxkBAAIZVWZwENEwftCX54h3Ri7wVnDKd9M9AAJLUAACHeeBS0oIgWA_sxEqNQQ"
+    ]
   }
 ]

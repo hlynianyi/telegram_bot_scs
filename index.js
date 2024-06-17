@@ -64,9 +64,10 @@ bot.onText(/\/catalog/, (msg) => {
   userStates[chatId] = "catalog";
   const options = {
     reply_markup: {
+      // todo: дополнять при появлении новых категорий
       keyboard: [
-        [{ text: "мотоциклы" }],
-        [{ text: "скутеры" }],
+        [{ text: "электро-мотоциклы" }],
+        [{ text: "электро-скутеры" }],
         [{ text: "квадроциклы" }],
         // [{ text: "Вернуться" }],
       ],
@@ -74,40 +75,50 @@ bot.onText(/\/catalog/, (msg) => {
       one_time_keyboard: true,
     },
   };
+  // todo: дополнять при появлении новых категорий
   bot.sendMessage(
     chatId,
     `Выберите что вас интересует в выпадающем меню или впишите:
-  -  мотоциклы
-  -  скутеры
+  -  электро-мотоциклы
+  -  электро-скутеры
   -  квадроциклы`,
     options
   );
 });
 
 // Обработчик команды "мотоциклы"
-bot.onText(/\мотоциклы/, (msg) => {
+bot.onText(/\электро-мотоциклы/, (msg) => {
   const chatId = msg.chat.id;
   userStates[chatId] = "bikes";
-  sendProductList(chatId, "Электро-мотоцикл");
+  sendProductList(chatId, "электро-мотоцикл");
 });
 
 // Обработчик команды "скутеры"
-bot.onText(/\скутеры/, (msg) => {
+bot.onText(/\электро-скутеры/, (msg) => {
   const chatId = msg.chat.id;
   userStates[chatId] = "scouters";
-  sendProductList(chatId, "Электро-скутер");
+  sendProductList(chatId, "электро-скутер");
 });
 
 // Обработчик команды "квадроциклы"
 bot.onText(/\квадроциклы/, (msg) => {
   const chatId = msg.chat.id;
   userStates[chatId] = "quadrocycles";
-  sendProductList(chatId, "Квадроцикл");
+  sendProductList(chatId, "квадроцикл");
 });
+
+function capitalizeFirstLetter(string) {
+  if (!string) return string;
+  return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
+}
 
 async function sendProductList(chatId, categoryName) {
   const allProducts = loadProducts();
-  const products = allProducts.filter((prod) => prod.category === categoryName);
+  const products = allProducts.filter((prod) => {
+    return (
+      String(prod.category).toLowerCase() === String(categoryName).toLowerCase()
+    );
+  });
 
   if (products.length === 0) {
     bot.sendMessage(chatId, "В настоящее время нет доступных товаров.");
@@ -119,7 +130,7 @@ async function sendProductList(chatId, categoryName) {
 
     content.push({
       tag: "figcaption",
-      children: [product.category, " - ", product.name],
+      children: [capitalizeFirstLetter(product.category), " - ", product.name],
     });
     content.push({
       tag: "p",
@@ -194,9 +205,12 @@ async function sendProductList(chatId, categoryName) {
       const page = await ph.createPage(TELEGRAPH_TOKEN, "Small Shop", content);
 
       const sellerContactString = `@mistersleep11 - контакт для заказа`;
-      let captionString = `${index + 1}. ${product.category} ${
+      const categoryFormatted = capitalizeFirstLetter(product.category);
+
+      let captionString = `${index + 1}. ${categoryFormatted} ${
         product.name
       }\n${sellerContactString}`;
+
       if (product.variants.length > 1) {
         captionString = `${captionString}\nЦена💰: ${
           product.variants[0].price
@@ -252,13 +266,13 @@ const addProductSteps = {
 };
 
 const addProductMessages = {
-  awaiting_name: "Введите название товара.",
+  awaiting_name: "Введите название товара:",
   awaiting_variant:
-    "Введите первую комплектацию товара (цена, скорость, мотор, контроллер) через ЗАПЯТУЮ! (без указания рублей, км/ч и т.д)",
+    "Введите первую комплектацию товара (цена, скорость, мотор, контроллер) через ЗАПЯТУЮ (без указания рублей, км/ч и т.д):",
   awaiting_more_variants_or_media:
-    "Введите следующую комплектацию (цена, скорость, мотор, контроллер) товара или введите /skip для завершения. (без указания рублей, км/ч и т.д)",
+    "Введите следующую комплектацию (цена, скорость, мотор, контроллер) товара или введите /skip для завершения (без указания рублей, км/ч и т.д):",
   awaiting_media:
-    "Загрузите изображение или видео товара (ПО ОДНОМУ ЗА РАЗ). Введите /skip для завершения.",
+    "Загрузите изображение или видео товара (ПО ОДНОМУ ЗА РАЗ). Введите /skip для завершения:",
 };
 
 const userStates = {};
@@ -286,7 +300,7 @@ bot.onText(/\/addproduct/, (msg) => {
 bot.on("message", async (msg) => {
   const chatId = msg.chat.id;
   const text = msg.text;
-  console.log("text:> ", text);
+  console.log("action:>> ", text);
   if (chatId !== Number(ADMIN_ID)) return;
 
   const currentStep = userStates[chatId];
@@ -296,7 +310,7 @@ bot.on("message", async (msg) => {
       currentStep === "awaiting_variant" ||
       currentStep === "awaiting_more_variants_or_media"
     ) {
-      console.log("Попытка добавить комплектацию :>> ", text);
+      console.log("Добавление комплектации :>> ", text);
       const [price, speed, engine, controller] = text
         .split(",")
         .map((item) => item.trim());
@@ -400,7 +414,26 @@ bot.onText(/\/info/, (msg) => {
   bot.sendMessage(chatId, INFO);
 });
 
-bot.on("polling_error", (err) => console.log(err));
+// Обработка ошибок polling
+bot.on("polling_error", (error) => {
+  console.error(error.code); // => 'EFATAL'
+  if (error.response) {
+    const statusCode = error.response.statusCode;
+    if (statusCode === 502) {
+      console.log("Received 502 error. Retrying in 5 seconds.");
+      setTimeout(() => {
+        bot.startPolling();
+      }, 5000);
+    } else if (statusCode === 429) {
+      const retryAfter = error.response.body.parameters.retry_after;
+      console.log(`Received 429 error. Retrying after ${retryAfter} seconds.`);
+      setTimeout(() => {
+        bot.startPolling();
+      }, retryAfter * 1000);
+    }
+  }
+});
+
 // Запуск экспресс сервера
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
