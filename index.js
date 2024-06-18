@@ -6,7 +6,7 @@ const TelegramBot = require("node-telegram-bot-api");
 const Telegraph = require("telegraph-node");
 const token = process.env.TELEGRAM_BOT_TOKEN;
 const TELEGRAPH_TOKEN = process.env.TELEGRAPH_TOKEN;
-const ADMIN_ID = process.env.ADMIN_ID; // ID администратора
+const ADMIN_ID = process.env.ADMIN_ID;
 const { INFO, WELCOME_MESSAGE, ADMIN_COMMANDS } = require("./data.js");
 const {
   capitalizeFirstLetter,
@@ -23,6 +23,13 @@ if (!TELEGRAPH_TOKEN) {
 if (!ADMIN_ID) {
   throw new Error("ADMIN_ID не задан в переменных окружения.");
 }
+
+const ph = new Telegraph();
+const bot = new TelegramBot(token, { polling: true });
+
+// Настройка экспресс сервера
+const app = express();
+app.use(bodyParser.json());
 
 const userStates = {};
 let productBuffer = {}; // Временное хранилище для ввода данных о товаре
@@ -51,13 +58,6 @@ const addProductMessages = {
   awaiting_media:
     "Загрузите изображение или видео товара (ПО ОДНОМУ ЗА РАЗ). Введите /skip для завершения:",
 };
-
-const ph = new Telegraph();
-const bot = new TelegramBot(token, { polling: true });
-
-// Настройка экспресс сервера
-const app = express();
-app.use(bodyParser.json());
 
 const commands = [
   {
@@ -101,26 +101,28 @@ bot.onText(/\/getid/, (msg) => {
 bot.onText(/\/catalog/, (msg) => {
   const chatId = msg.chat.id;
   userStates[chatId] = "catalog";
+
+  const allProducts = loadProducts();
+  const uniqueCategoriesSet = new Set();
+  allProducts.forEach((product) => {
+    uniqueCategoriesSet.add(product.category.toLowerCase());
+  });
+  // todo: удалить при появлении первого квадроцикла в списке.
+  uniqueCategoriesSet.add("квадроцикл");
+  const uniqueCategoriesArr = Array.from(uniqueCategoriesSet);
   const options = {
     reply_markup: {
-      // todo: дополнять при появлении новых категорий
-      keyboard: [
-        [{ text: "электро-мотоциклы" }],
-        [{ text: "электро-скутеры" }],
-        [{ text: "квадроциклы" }],
-        // [{ text: "Вернуться" }],
-      ],
+      keyboard: uniqueCategoriesArr.map((category) => [
+        { text: `${category}ы` },
+      ]),
       resize_keyboard: true,
       one_time_keyboard: true,
     },
   };
-  // todo: дополнять при появлении новых категорий
   bot.sendMessage(
     chatId,
-    `Выберите что вас интересует в выпадающем меню или впишите:
-  -  электро-мотоциклы
-  -  электро-скутеры
-  -  квадроциклы`,
+    `Выберите что вас интересует в выпадающем меню или впишите одну из следующих категорий:
+  ${uniqueCategoriesArr.map((category) => `-  ${category}ы`).join("\n  ")}`,
     options
   );
 });
@@ -477,7 +479,5 @@ bot.on("polling_error", (error) => {
 // Запуск экспресс сервера
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(
-    `Server is running on port ${PORT}\n------------------------------`
-  );
+  console.log(`Server is running on port ${PORT}`);
 });
