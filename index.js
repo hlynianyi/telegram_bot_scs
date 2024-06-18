@@ -1,14 +1,18 @@
 require("dotenv").config(); // Загружаем переменные окружения из .env
+const fs = require("fs");
+const express = require("express");
+const bodyParser = require("body-parser");
+const TelegramBot = require("node-telegram-bot-api");
+const Telegraph = require("telegraph-node");
 const token = process.env.TELEGRAM_BOT_TOKEN;
 const TELEGRAPH_TOKEN = process.env.TELEGRAPH_TOKEN;
 const ADMIN_ID = process.env.ADMIN_ID; // ID администратора
-const TelegramBot = require("node-telegram-bot-api");
-const Telegraph = require("telegraph-node");
-const express = require("express");
-const bodyParser = require("body-parser");
-const fs = require("fs");
-const { INFO, WELCOME_MESSAGE } = require("./data.js");
-const { capitalizeFirstLetter, loadProducts } = require("./utils.js");
+const { INFO, WELCOME_MESSAGE, ADMIN_COMMANDS } = require("./data.js");
+const {
+  capitalizeFirstLetter,
+  loadProducts,
+  saveUserList,
+} = require("./utils.js");
 
 if (!token) {
   throw new Error("TELEGRAM_BOT_TOKEN не задан в переменных окружения.");
@@ -22,6 +26,13 @@ if (!ADMIN_ID) {
 
 const userStates = {};
 let productBuffer = {}; // Временное хранилище для ввода данных о товаре
+let userList = []; // Временное хранилище для пользователей
+
+// Загрузка списка пользователей из файла
+if (fs.existsSync("users.json")) {
+  const data = fs.readFileSync("users.json");
+  userList = JSON.parse(data);
+}
 
 const addProductSteps = {
   awaiting_category: "awaiting_name",
@@ -68,8 +79,16 @@ bot.setMyCommands(commands);
 // Обработчик команды /start
 bot.onText(/\/start/, (msg) => {
   const chatId = msg.chat.id;
-  console.log(`User @${msg.chat.username} joined, ID:`, msg.chat.id);
+  if (!userList.includes(chatId)) {
+    userList.push(chatId);
+    saveUserList(userList);
+  }
+  console.log(`Пользователь @${msg.chat.username} (id:${chatId}) подключился.`);
+
   bot.sendMessage(chatId, WELCOME_MESSAGE);
+  if (String(chatId) === String(ADMIN_ID)) {
+    bot.sendMessage(chatId, ADMIN_COMMANDS);
+  }
 });
 
 // Получение ID телеграм-пользователя
@@ -162,6 +181,17 @@ bot.onText(/\/skip/, (msg) => {
 bot.onText(/\/info/, (msg) => {
   const chatId = msg.chat.id;
   bot.sendMessage(chatId, INFO);
+});
+
+bot.onText(/\/notify (.+)/, (msg, match) => {
+  const chatId = msg.chat.id;
+  if (String(chatId) === String(ADMIN_ID)) {
+    const message = match[1];
+    sendNotification(message);
+    bot.sendMessage(chatId, "Уведомление отправлено всем пользователям.");
+  } else {
+    bot.sendMessage(chatId, "Вы не имеете прав для выполнения этой команды.");
+  }
 });
 
 async function sendProductList(chatId, categoryName) {
@@ -309,7 +339,7 @@ bot.on("message", async (msg) => {
   const text = msg.text;
 
   if (text !== "/start")
-    console.log("action by:>", `@${msg.chat.username} - `, text);
+    console.log("Активность:", `@${msg.chat.username} -`, text);
 
   if (chatId !== Number(ADMIN_ID)) return;
 
@@ -368,6 +398,14 @@ bot.on("message", async (msg) => {
     saveProduct(chatId);
   }
 });
+
+function sendNotification(message) {
+  userList.forEach((chatId) => {
+    bot.sendMessage(chatId, message).catch((error) => {
+      console.error(`Failed to send message to ${chatId}:`, error);
+    });
+  });
+}
 
 async function saveProduct(chatId) {
   const products = loadProducts();

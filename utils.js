@@ -72,8 +72,14 @@ function loadProducts() {
   return [];
 }
 
+// Сохранение списка пользователей в файл
+function saveUserList(userList) {
+  fs.writeFileSync("users.json", JSON.stringify(userList, null, 2));
+}
+
 module.exports = {
   capitalizeFirstLetter,
   addPathToProductsDetails,
   loadProducts,
+  saveUserList,
 };
