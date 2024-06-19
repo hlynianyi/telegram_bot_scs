@@ -39,7 +39,7 @@ app.use(bodyParser.json());
 
 // Установка webhook
 bot.setWebHook(
-  "https://smallshopchinabot-aa082aec5eb5.herokuapp.com/webhook-tgbot"
+  "https://smallshochina-bot-da6e20f9a142.herokuapp.com/webhook-tgbot"
 );
 
 // Обработка вебхуков
