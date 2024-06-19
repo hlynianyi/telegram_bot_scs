@@ -15,13 +15,19 @@ const {
 } = require("./utils.js");
 
 if (!token) {
-  throw new Error("TELEGRAM_BOT_TOKEN не задан в переменных окружения.");
+  throw new Error(
+    "TELEGRAM_BOT_TOKEN не задан в переменных окружения.\nНеобходимо прописать TELEGRAM_BOT_TOKEN=[ТУТ ТОКЕН БЕЗ СКОБОК] внутри .env файла в корне проекта."
+  );
 }
 if (!TELEGRAPH_TOKEN) {
-  throw new Error("TELEGRAPH_TOKEN не задан в переменных окружения.");
+  throw new Error(
+    "TELEGRAPH_TOKEN не задан в переменных окружения.\nНеобходимо прописать TELEGRAPH_TOKEN=[ТУТ ТОКЕН БЕЗ СКОБОК] внутри .env файла в корне проекта.\nТокен выдает BotFather в ТГ."
+  );
 }
 if (!ADMIN_ID) {
-  throw new Error("ADMIN_ID не задан в переменных окружения.");
+  throw new Error(
+    "ADMIN_ID не задан в переменных окружения.\nНеобходимо прописать ADMIN_ID=(/getid) внутри .env файла в корне проекта. "
+  );
 }
 
 const ph = new Telegraph();
