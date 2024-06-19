@@ -37,6 +37,17 @@ const bot = new TelegramBot(token, { polling: true });
 const app = express();
 app.use(bodyParser.json());
 
+// Установка webhook
+bot.setWebHook(
+  "https://smallshopchinabot-aa082aec5eb5.herokuapp.com/webhook-tgbot"
+);
+
+// Обработка вебхуков
+app.post("/webhook-tgbot", (req, res) => {
+  bot.processUpdate(req.body);
+  res.sendStatus(200);
+});
+
 const userStates = {};
 let productBuffer = {}; // Временное хранилище для ввода данных о товаре
 let userList = []; // Временное хранилище для пользователей
@@ -324,13 +335,12 @@ async function sendProductList(chatId, categoryName) {
         },
       };
 
-      await bot.sendMessage(chatId, `${captionString}`, options);
-
       // Отправка медиафайлов группами по 10
       for (let i = 0; i < mediaGroup.length; i += 10) {
         const mediaChunk = mediaGroup.slice(i, i + 10);
         await bot.sendMediaGroup(chatId, mediaChunk);
       }
+      await bot.sendMessage(chatId, `${captionString}`, options);
     } catch (error) {
       console.error("Error on method createPage:", error);
       bot.sendMessage(
