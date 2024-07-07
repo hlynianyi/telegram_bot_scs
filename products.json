@@ -493,5 +493,77 @@
       "BAACAgIAAxkBAAIZVWZwENEwftCX54h3Ri7wVnDKd9M9AAJLUAACHeeBS0oIgWA_sxEqNQQ"
     ],
     "detailsPath": "https://telegra.ph/Small-Shop-China-06-17-35"
+  },
+  {
+    "category": "Электро-мотоцикл",
+    "name": "Ураган",
+    "variants": [
+      {
+        "price": "127000",
+        "speed": "100-110",
+        "engine": "3000",
+        "controller": "5000"
+      },
+      {
+        "price": "147000",
+        "speed": "120-130",
+        "engine": "4000",
+        "controller": "8000"
+      }
+    ],
+    "images": [
+      "AgACAgIAAxkBAAKP-GaK1SfiTopnkwlChpnIc2Uv-ZzJAAKx3jEbR7dRSBK4qMZsNBSGAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAKP-maK1S4zSeVO6h8O3-blL7MzA41nAAKy3jEbR7dRSEq44plhmvOGAQADAgADeAADNQQ",
+      "AgACAgIAAxkBAAKP_GaK1TX5AAEWLvvB8meAuzG90f8q2gACs94xG0e3UUiqNkRI4bpPrwEAAwIAA3gAAzUE",
+      "AgACAgIAAxkBAAKP_maK1TqxNrxsIztbKSkTQU9w-Cd7AAK03jEbR7dRSNcklqr17wABWwEAAwIAA3kAAzUE",
+      "AgACAgIAAxkBAAKQAAFmitU_h5pSec1pG63mNZ76aeAp9AACtt4xG0e3UUjKOJqGEEd6_wEAAwIAA3kAAzUE",
+      "AgACAgIAAxkBAAKQAmaK1UXiEq-G1WkMmeXkKn9D_XP7AAK43jEbR7dRSIzsnMbKG5v5AQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAKQBGaK1UyzrikmPEGMr4W7kRPjcthvAAK53jEbR7dRSAws-7yct037AQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAKQBmaK1VMe9GL0vwV1Qe5XAhnaPnp2AAK73jEbR7dRSAtimZqxB01KAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAKQCGaK1VZzHdPQJLLP4LwrrfSAMU1aAAK83jEbR7dRSLJKueBmgJOTAQADAgADeAADNQQ"
+    ],
+    "videos": [
+      "BAACAgIAAxkBAAKQCmaK1WXq2IAII-MY3RK-_SRog-SGAAJjTQACR7dRSE8iCj1MGdPENQQ"
+    ],
+    "detailsPath": "https://telegra.ph/Small-Shop-China-07-07"
+  },
+  {
+    "category": "Электро-мотоцикл",
+    "name": "Kawasaki Z1000",
+    "variants": [
+      {
+        "price": "152000",
+        "speed": "100-110",
+        "engine": "3000",
+        "controller": "5000"
+      },
+      {
+        "price": "172000",
+        "speed": "120-130",
+        "engine": "4000",
+        "controller": "8000"
+      },
+      {
+        "price": "247000",
+        "speed": "145-155",
+        "engine": "8000",
+        "controller": "10000"
+      }
+    ],
+    "images": [
+      "AgACAgIAAxkBAAKQIGaK1hAVs1KT5o8TjLiLUpxnqZ2TAALA3jEbR7dRSKmQP-SQAWDRAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAKQImaK1hgPMJ8F2iLWZRg8FiKBjLQAA8HeMRtHt1FIZfEahBdAQRMBAAMCAAN5AAM1BA",
+      "AgACAgIAAxkBAAKQJGaK1h4spVmwlOa_VuJ_S4TU4p-JAALC3jEbR7dRSOVCOG0qxk6ZAQADAgADeAADNQQ",
+      "AgACAgIAAxkBAAKQJmaK1iGX07yWZOMcRNIrl995TvN9AALD3jEbR7dRSG6BsyJOJbIjAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAKQKGaK1iXvl0yOD4ckPMXZOii7HnFzAALG3jEbR7dRSP00yYsuaU16AQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAKQKmaK1iheRu_p-318jSWYBi5sHs__AALH3jEbR7dRSJEb_1sag11MAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAKQLGaK1i0k_XG19vh5Jf-NYQt0oAmwAALI3jEbR7dRSAvVJAY2RtYZAQADAgADeQADNQQ",
+      "AgACAgIAAxkBAAKQLmaK1jRvMSDompOzcksd3xYjYVpLAALJ3jEbR7dRSLA9Em24g3RIAQADAgADeQADNQQ"
+    ],
+    "videos": [
+      "BAACAgIAAxkBAAKQMGaK1m8g3ekd8SMsyPkqucxvphErAAKBTQACR7dRSEDc8-yaos0wNQQ",
+      "BAACAgIAAxkBAAKQMmaK1pVaEqhF9-Mpcm0_9Vuzr8r7AAKETQACR7dRSOSyZTfL8f4KNQQ"
+    ],
+    "detailsPath": "https://telegra.ph/Small-Shop-China-07-07-2"
   }
 ]
